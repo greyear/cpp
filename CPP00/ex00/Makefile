@@ -6,7 +6,7 @@
 #    By: azinchen <azinchen@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/02 11:27:58 by azinchen          #+#    #+#              #
-#    Updated: 2025/06/02 12:42:51 by azinchen         ###   ########.fr        #
+#    Updated: 2025/06/02 16:01:21 by azinchen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,11 +46,11 @@ $(OBJ_DIR)/%.o:	%.cpp
 
 clean:
 				@$(RM) -rf $(OBJ_DIR)
-				@echo "$(RED) Obj files deleted$(DEF_COLOR)"
+				@echo "$(BLUE) Obj files deleted$(DEF_COLOR)"
 		
 fclean: 		clean
 				@$(RM) $(NAME)
-				@echo "$(RED) Obj files and executable deleted$(DEF_COLOR)"
+				@echo "$(BLUE) Cleaning finished$(DEF_COLOR)"
 			
 re: 			fclean all
 
