@@ -6,57 +6,51 @@
 #    By: azinchen <azinchen@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/02 11:27:58 by azinchen          #+#    #+#              #
-#    Updated: 2025/06/02 11:33:04 by azinchen         ###   ########.fr        #
+#    Updated: 2025/06/02 12:42:51 by azinchen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+# Colors
+DEF_COLOR		=	\033[0;39m
+RED				=	\033[0;91m
+GREEN			=	\033[0;92m
+BLUE			=	\033[0;94m
+
 # Standard
-NAME 			=	miniRT
+NAME 			=	megaphone
 
 # Directories
-SRC_DIR 		=	src
 OBJ_DIR 		=	obj
 
-#Includes
-
-INCLUDE 		=	./include/
-HEADERS			=	-I$(LIBFT_INC) -I$(MLX_INC)
-
 # Compiler and compilation flags
-CC 				=	c++
-CFLAGS 			=	-Wall -Wextra -Werror -std=c++98
+CXX				=	c++
+CXXFLAGS 		=	-Wall -Wextra -Werror -std=c++98
 RM				=	rm -f
 
 # Source files
-PARS_FILES		=	file_validation.c \
-					set.c
-
-SRC_FILES		=	$(addprefix $(PARS_DIR)/, $(PARS_FILES)) \
-					main.c
-
-SRC				=	$(addprefix $(SRC_DIR)/, $(SRC_FILES))
+SRC				=	megaphone.cpp
 
 # Object files
-OBJ 			=	$(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC))
+OBJ 			=	$(addprefix $(OBJ_DIR)/, $(SRC:.cpp=.o))
 
-#Build rules
+# Build rules
 all: 			$(NAME)
 
 $(NAME): 		$(OBJ)
-				@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(HEADERS) $(LIB) -o $(NAME)
+				@$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
 				@echo "$(GREEN) Compiled!$(DEF_COLOR)"
 
-$(OBJ_DIR)/%.o:	$(SRC_DIR)/%.c
+$(OBJ_DIR)/%.o:	%.cpp
 				@mkdir -p $(@D)
-				@$(CC) $(CFLAGS) $(INCLUDE_DIR) -Imlx -c $< -o $@
+				@$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
-				@echo "$(YELLOW) Deleting object files... $(DEF_COLOR)"
 				@$(RM) -rf $(OBJ_DIR)
+				@echo "$(RED) Obj files deleted$(DEF_COLOR)"
 		
-fclean: 		clean 
-				@echo "$(RED) Deleting miniRT... $(DEF_COLOR)"
+fclean: 		clean
 				@$(RM) $(NAME)
+				@echo "$(RED) Obj files and executable deleted$(DEF_COLOR)"
 			
 re: 			fclean all
 
