@@ -20,9 +20,13 @@
 class PhoneBook
 {
 	private:
-		Contact _contacts[CONTACTS_AMOUNT];
+		Contact	_contacts[CONTACTS_AMOUNT];
+		int		_index;
+		int		_amount;
 	public:
-		
+		PhoneBook(); //constructor declaration
+		void	add(); //method declaration
+
 };
 
 #endif

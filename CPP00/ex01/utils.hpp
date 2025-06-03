@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Contact.cpp                                        :+:      :+:    :+:   */
+/*   utils.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: azinchen <azinchen@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/02 17:41:57 by azinchen          #+#    #+#             */
-/*   Updated: 2025/06/02 19:08:08 by azinchen         ###   ########.fr       */
+/*   Created: 2025/06/03 14:19:50 by azinchen          #+#    #+#             */
+/*   Updated: 2025/06/03 14:19:52 by azinchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Contact.hpp"
+#ifndef UTILS_HPP
+# define UTILS_HPP
 
-void	Contact::fillIn(const std::string& firstName, 
-		const std::string& lastName, const std::string& nickname,
-		const std::string& phoneNumber, const std::string& darkestSecret)
-{
-	_firstName = firstName;
-	_lastName = lastName;
-	_nickname = nickname;
-	_phoneNumber = phoneNumber;
-	_darkestSecret = darkestSecret;
-}
+std::string	getValidatedInput(const std::string& prompt);
+
+#endif

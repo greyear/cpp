@@ -1,50 +1,52 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   utils.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: azinchen <azinchen@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/02 17:42:21 by azinchen          #+#    #+#             */
-/*   Updated: 2025/06/02 19:07:10 by azinchen         ###   ########.fr       */
+/*   Created: 2025/06/03 14:19:58 by azinchen          #+#    #+#             */
+/*   Updated: 2025/06/03 14:19:59 by azinchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include "PhoneBook.hpp"
+#include "utils.hpp"
 
-int	main(int argc, char *argv[])
+std::string	getValidatedInput(const std::string& prompt)
 {
-	PhoneBook	phoneBook; //object creation, constructor used?
 	std::string	input;
 
-	if (argc != 1)
-	{
-		std::cout << "Program should have no arguments" << std::endl;
-		return (0);
-	}
 	while (1)
 	{
-		std::cout << "Please enter the command: ADD, SEARCH or EXIT" << std::endl;
-
+		std::cout << prompt;
 		if (!std::getline(std::cin, input))
 		{
 			if (std::cin.eof())
 			{
 				std::cout << "EOF reached" << std::endl;
-				return (0);
+				return ("");
 			}
 			std::cout << "Input error" << std::endl;
-			return (0);
+			return ("");
 		}
-		if (input == "ADD")
-			phoneBook.add();
-		else if (input == "SEARCH")
-			phoneBook.search();
-		else if (input == "EXIT")
-			break ;
-		else
-			std::cout << "Unknown command!" << std::endl;
+		if (!input.empty())
+			return (input);
+		std::cout << "The field should be not empty!" << std::endl;
 	}
-	return (0);
+}
+
+std::string getValidatedInput(const std::string& prompt)
+{
+	std::string input;
+	while (true) {
+		std::cout << prompt;
+		if (!std::getline(std::cin, input)) {
+			std::cout << "EOF reached" << std::endl;
+			exit(0);
+		}
+		if (!input.empty())
+			return input;
+		std::cout << "The field should be not empty!" << std::endl;
+	}
 }
