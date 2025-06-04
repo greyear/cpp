@@ -14,18 +14,20 @@
 # define PHONEBOOK_HPP
 
 # include "Contact.hpp"
+# include "utils.hpp"
 
-# define CONTACTS_AMOUNT 8
+# define MAX_AMOUNT 8
 
 class PhoneBook
 {
 	private:
-		Contact	_contacts[CONTACTS_AMOUNT];
+		Contact	_contacts[MAX_AMOUNT];
 		int		_index;
 		int		_amount;
 	public:
 		PhoneBook(); //constructor declaration
 		void	add(); //method declaration
+		void	search() const;
 
 };
 

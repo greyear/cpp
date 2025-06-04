@@ -24,11 +24,11 @@ OBJ_DIR 		=	obj
 
 # Compiler and compilation flags
 CXX				=	c++
-CXXFLAGS 		=	-Wall -Wextra -Werror -std=c++98 # CHECK 98!!!!!!!!!!!!!!!!!!!!!!!
+CXXFLAGS 		=	-Wall -Wextra -Werror -std=c++98
 RM				=	rm -f
 
 # Source files
-SRC				=	PhoneBook.cpp Contact.cpp main.cpp
+SRC				=	PhoneBook.cpp Contact.cpp utils.cpp main.cpp
 
 # Object files
 OBJ 			=	$(addprefix $(OBJ_DIR)/, $(SRC:.cpp=.o))

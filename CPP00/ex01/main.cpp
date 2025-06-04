@@ -10,31 +10,32 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
 #include "PhoneBook.hpp"
 
 int	main(int argc, char *argv[])
 {
+	(void)argv;
+
 	PhoneBook	phoneBook; //object creation, constructor used?
 	std::string	input;
 
 	if (argc != 1)
 	{
-		std::cout << "Program should have no arguments" << std::endl;
+		std::cout << RED << "Program should have no arguments" << DEF << std::endl;
 		return (0);
 	}
 	while (1)
 	{
-		std::cout << "Please enter the command: ADD, SEARCH or EXIT" << std::endl;
+		std::cout << "\nPlease enter the command (ADD, SEARCH or EXIT): " << std::endl;
 
 		if (!std::getline(std::cin, input))
 		{
 			if (std::cin.eof())
 			{
-				std::cout << "EOF reached" << std::endl;
+				std::cout << RED << "EOF reached. Exiting program" << DEF << std::endl;
 				return (0);
 			}
-			std::cout << "Input error" << std::endl;
+			std::cout << RED << "Input error" << DEF << std::endl;
 			return (0);
 		}
 		if (input == "ADD")
@@ -42,9 +43,12 @@ int	main(int argc, char *argv[])
 		else if (input == "SEARCH")
 			phoneBook.search();
 		else if (input == "EXIT")
+		{
+			std::cout << GREEN << "Bye-bye!" << DEF << std::endl;
 			break ;
+		}
 		else
-			std::cout << "Unknown command!" << std::endl;
+			std::cout << RED << "Unknown command, please try again!" << DEF << std::endl;
 	}
 	return (0);
 }

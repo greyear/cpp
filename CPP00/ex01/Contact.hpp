@@ -13,6 +13,8 @@
 #ifndef CONTACT_HPP
 # define CONTACT_HPP
 
+#include <iostream>
+#include <iomanip>
 #include <string>
 
 class Contact
@@ -23,13 +25,15 @@ class Contact
 		std::string	_nickname;
 		std::string	_phoneNumber;
 		std::string	_darkestSecret;
+		void	printLengthTen(const std::string& field) const;
 	public:
-		void Contact::fillIn(const std::string& firstName,
+		void	fillIn(const std::string& firstName,
 				const std::string& lastName,
 				const std::string& nickname,
 				const std::string& phoneNumber,
 				const std::string& darkestSecret);
-		
+		void	printSavedContact(int i) const;
+		void	printFoundContact() const;
 };
 
 #endif
