@@ -16,7 +16,7 @@ int	main(int argc, char *argv[])
 {
 	(void)argv;
 
-	PhoneBook	phoneBook; //object creation, constructor used?
+	PhoneBook	phoneBook;
 	std::string	input;
 
 	if (argc != 1)

@@ -12,7 +12,7 @@
 
 #include "PhoneBook.hpp"
 
-PhoneBook::PhoneBook(): _index(0), _amount(0) //initializer list in constructor realization
+PhoneBook::PhoneBook(): _index(0), _amount(0)
 {
 
 }

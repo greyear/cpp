@@ -14,41 +14,29 @@
 #include <iostream>
 #include <ctime>
 
-//static (global) variables should be initialized once not inside the constructor, they don't depend on an object created
 int	Account::_nbAccounts = 0;
 int	Account::_totalAmount = 0;
 int	Account::_totalNbDeposits = 0;
 int	Account::_totalNbWithdrawals = 0;
 
-/*
-constructor
-[19920104_091532] index:0;amount:42;created
-*/
 Account::Account(int initial_deposit):
-	_accountIndex(_nbAccounts),//private fields, initializer list in constructor realization
+	_accountIndex(_nbAccounts),
 	_amount(initial_deposit),
 	_nbDeposits(0),
 	_nbWithdrawals(0)
 {
-	++_nbAccounts; //increase static variables
+	++_nbAccounts;
 	_totalAmount += initial_deposit;
 	_displayTimestamp();
 	std::cout << "index:" << _accountIndex << ";amount:" << _amount << ";created" << std::endl;
 }
 
-/*
-destructor
-[19920104_091532] index:0;amount:47;closed
-*/
 Account::~Account(void)
 {
 	_displayTimestamp();
 	std::cout << "index:" << _accountIndex << ";amount:" << _amount << ";closed" << std::endl;
 }
 
-/*
-4 getter functions for static variables
-*/
 int	Account::getNbAccounts(void)
 {
 	return (_nbAccounts);
@@ -66,20 +54,15 @@ int	Account::getNbWithdrawals(void)
 	return (_totalNbWithdrawals);
 }
 
-/*
-YearMonthDay_HourMinuteSecond
-[19920104_091532]
-*/
 void	Account::_displayTimestamp(void)
 {
-	std::time_t now = std::time(NULL); //seconds since 1.01.1970
-	std::tm* tm_ptr = std::localtime(&now); //struct with year, month, day, hour, minute, second
+	std::time_t now = std::time(NULL);
+	std::tm* tm_ptr = std::localtime(&now);
 	char buffer[80];
-	std::strftime(buffer, sizeof(buffer), "%Y%m%d_%H%M%S", tm_ptr); //allowed?
+	std::strftime(buffer, sizeof(buffer), "%Y%m%d_%H%M%S", tm_ptr);
 	std::cout << "[" << buffer << "] ";
 }
 
-//general info about all the accounts
 void	Account::displayAccountsInfos(void)
 {
 	_displayTimestamp();
@@ -87,10 +70,6 @@ void	Account::displayAccountsInfos(void)
 	<< ";deposits:" << _totalNbDeposits << ";withdrawals:" << _totalNbWithdrawals << std::endl;
 }
 
-/*
-+ operation
-[19920104_091532] index:0;p_amount:42;deposit:5;amount:47;nb_deposits:1
-*/
 void	Account::makeDeposit(int deposit)
 {
 	_displayTimestamp();
@@ -102,11 +81,7 @@ void	Account::makeDeposit(int deposit)
 	++_totalNbDeposits;
 	std::cout << ";amount:" << _amount << ";nb_deposits:" << _nbDeposits << std::endl;
 }
-/*
-- operation
-[19920104_091532] index:0;p_amount:47;withdrawal:refused OR
-[19920104_091532] index:1;p_amount:819;withdrawal:34;amount:785;nb_withdrawals:1
-*/
+
 bool	Account::makeWithdrawal(int withdrawal)
 {
 	_displayTimestamp();
@@ -125,16 +100,11 @@ bool	Account::makeWithdrawal(int withdrawal)
 	return (true);
 }
 
-//getter for the amount of particular account
 int	Account::checkAmount(void) const
 {
 	return (_amount);
 }
 
-/*
-info about 1 particular account
-[19920104_091532] index:0;amount:47;deposits:1;withdrawals:0
-*/
 void	Account::displayStatus(void) const
 {
 	_displayTimestamp();

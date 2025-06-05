@@ -25,8 +25,8 @@ class PhoneBook
 		int		_index;
 		int		_amount;
 	public:
-		PhoneBook(); //constructor declaration
-		void	add(); //method declaration
+		PhoneBook();
+		void	add();
 		void	search() const;
 
 };

@@ -19,7 +19,7 @@ std::string	getValidatedInput(const std::string& prompt)
 	while (1)
 	{
 		std::cout << prompt;
-		if (!std::getline(std::cin, input)) //reads the whole line
+		if (!std::getline(std::cin, input))
 		{
 			if (std::cin.eof())
 			{
@@ -34,8 +34,6 @@ std::string	getValidatedInput(const std::string& prompt)
 		std::cout << RED << "The field should be not empty :(" << DEF << std::endl;
 	}
 }
-//the question is do we need to give the possibility to retry inputing the index?
-//or just return when it's not correct
 
 int	getValidatedIndex(int maxCount)
 {
@@ -44,7 +42,7 @@ int	getValidatedIndex(int maxCount)
 	while (1)
 	{
 		std::cout << "Please enter the index of the contact: ";
-		std::cin >> index; //reads one word before the space
+		std::cin >> index;
 		if (std::cin.eof())
 		{
 			std::cout << RED << "EOF reached. Exiting program" << DEF <<  std::endl;
@@ -52,8 +50,8 @@ int	getValidatedIndex(int maxCount)
 		}
 		if (std::cin.fail())
 		{
-			std::cin.clear(); // input will NOT work if we put abc while reading WITHOUT this flag cleaning
-			std::cin.ignore(INT_MAX, '\n'); // clears the input buffer until \n symbol OR INT_MAX symbols (max)
+			std::cin.clear();
+			std::cin.ignore(INT_MAX, '\n');
 			std::cout << RED << "Wrong input: the index should be an int value" << DEF << std::endl;
 			continue ;
 		}
