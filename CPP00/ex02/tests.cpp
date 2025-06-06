@@ -15,38 +15,35 @@
 
 int		main( void ) {
 
-	typedef std::vector<Account::t>							  accounts_t; //like an array but dinamic
-	typedef std::vector<int>								  ints_t; // for + and -
+	typedef std::vector<Account::t>							  accounts_t;
+	typedef std::vector<int>								  ints_t;
 	typedef std::pair<accounts_t::iterator, ints_t::iterator> acc_int_t;
 
-	int	const				amounts[]	= { 42, 54, 957, 432, 1234, 0, 754, 16576 }; //starting amounts
-	size_t const			amounts_size( sizeof(amounts) / sizeof(int) ); //how many accounts
-	accounts_t				accounts( amounts, amounts + amounts_size ); //objects of class Account creation
-	//so ^ line creates Account(42), Account(54) and so on
+	int	const				amounts[]	= { 42, 54, 957, 432, 1234, 0, 754, 16576 };
+	size_t const			amounts_size( sizeof(amounts) / sizeof(int) );
+	accounts_t				accounts( amounts, amounts + amounts_size );
 	accounts_t::iterator	acc_begin	= accounts.begin();
 	accounts_t::iterator	acc_end		= accounts.end();
 
-	int	const			d[]			= { 5, 765, 564, 2, 87, 23, 9, 20 }; //+ array
+	int	const			d[]			= { 5, 765, 564, 2, 87, 23, 9, 20 };
 	size_t const		d_size( sizeof(d) / sizeof(int) );
 	ints_t				deposits( d, d + d_size );
 	ints_t::iterator	dep_begin	= deposits.begin();
 	ints_t::iterator	dep_end		= deposits.end();
 
-	int	const			w[]			= { 321, 34, 657, 4, 76, 275, 657, 7654 }; //- array
+	int	const			w[]			= { 321, 34, 657, 4, 76, 275, 657, 7654 };
 	size_t const		w_size( sizeof(w) / sizeof(int) );
 	ints_t				withdrawals( w, w + w_size );
 	ints_t::iterator	wit_begin	= withdrawals.begin();
 	ints_t::iterator	wit_end		= withdrawals.end();
 
-	Account::displayAccountsInfos(); //display after creation
+	Account::displayAccountsInfos();
 	std::for_each( acc_begin, acc_end, std::mem_fun_ref( &Account::displayStatus ) );
-	//for_each calls the function to the range of objects from acc_begin to acc_end
-	//mem_fun_ref turns method into a function that can be used in for_each (now lambda expressions do the same)
 	for ( acc_int_t it( acc_begin, dep_begin );
 		  it.first != acc_end && it.second != dep_end;
 		  ++(it.first), ++(it.second) ) {
 
-		(*(it.first)).makeDeposit( *(it.second) ); //increase all accounts
+		(*(it.first)).makeDeposit( *(it.second) );
 	}
 
 	Account::displayAccountsInfos();
@@ -56,7 +53,7 @@ int		main( void ) {
 		  it.first != acc_end && it.second != wit_end;
 		  ++(it.first), ++(it.second) ) {
 
-		(*(it.first)).makeWithdrawal( *(it.second) ); //decrease all accounts
+		(*(it.first)).makeWithdrawal( *(it.second) );
 	}
 
 	Account::displayAccountsInfos();
