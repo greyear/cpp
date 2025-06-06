@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <iostream> //maybe I need to include this here as all the headers should be able to be used separately!
 #include "PhoneBook.hpp"
 
 PhoneBook::PhoneBook(): _index(0), _amount(0)
