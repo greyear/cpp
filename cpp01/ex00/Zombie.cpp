@@ -13,18 +13,18 @@
 #include "Zombie.hpp"
 
 Zombie::Zombie( std::string givenName ):
-	name(givenName)
+	_name(givenName)
 {
 
 }
 
 Zombie::~Zombie( void )
 {
-
+	std::cout << _name << "is destroyed :(" << std::endl;
 }
 
-Zombie::void announce( void )
+void	Zombie::announce( void )
 {
-	
+	std::cout << _name << ":  BraiiiiiiinnnzzzZ..." << std::endl;
 }
 
