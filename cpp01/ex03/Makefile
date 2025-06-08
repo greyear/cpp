@@ -17,7 +17,7 @@ GREEN			=	\033[0;92m
 BLUE			=	\033[0;94m
 
 # Standard
-NAME 			=	brainz
+NAME 			=	moar
 
 # Directories
 OBJ_DIR 		=	obj
@@ -28,7 +28,7 @@ CXXFLAGS 		=	-Wall -Wextra -Werror -std=c++98
 RM				=	rm -f
 
 # Source files
-SRC				=	main.cpp Zombie.cpp newZombie.cpp randomChump.cpp
+SRC				=	main.cpp Weapon.cpp HumanA.cpp HumanB.cpp
 
 # Object files
 OBJ 			=	$(addprefix $(OBJ_DIR)/, $(SRC:.cpp=.o))

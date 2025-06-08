@@ -20,7 +20,7 @@ Zombie::Zombie( std::string givenName ):
 
 Zombie::~Zombie( void )
 {
-	std::cout << _name << "is destroyed :(" << std::endl;
+	std::cout << _name << " is destroyed :(" << std::endl;
 }
 
 void	Zombie::announce( void )

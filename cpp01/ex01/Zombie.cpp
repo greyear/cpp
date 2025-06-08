@@ -1,20 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   randomChump.cpp                                    :+:      :+:    :+:   */
+/*   Zombie.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: azinchen <azinchen@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/06 20:09:29 by azinchen          #+#    #+#             */
-/*   Updated: 2025/06/06 20:09:30 by azinchen         ###   ########.fr       */
+/*   Created: 2025/06/08 18:40:48 by azinchen          #+#    #+#             */
+/*   Updated: 2025/06/08 18:40:50 by azinchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
-void	randomChump( std::string name )
+Zombie::Zombie()
 {
-	/*Zombie randomChump = Zombie(name); //it's the same as*/
-	Zombie randomChump(name);
-	randomChump.announce();
+
+}
+
+Zombie::Zombie( std::string givenName ):
+	_name(givenName)
+{
+
+}
+
+Zombie::~Zombie( void )
+{
+	std::cout << _name << " is destroyed :(" << std::endl;
+}
+
+void	Zombie::announce( void )
+{
+	std::cout << _name << ":  BraiiiiiiinnnzzzZ..." << std::endl;
+}
+
+
+void Zombie::giveName( std::string name )
+{
+	_name = name;
 }
