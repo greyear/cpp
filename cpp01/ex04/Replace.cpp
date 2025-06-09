@@ -1,32 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanB.hpp                                         :+:      :+:    :+:   */
+/*   Replace.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: azinchen <azinchen@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/08 21:53:27 by azinchen          #+#    #+#             */
-/*   Updated: 2025/06/08 21:53:29 by azinchen         ###   ########.fr       */
+/*   Created: 2025/06/09 17:47:06 by azinchen          #+#    #+#             */
+/*   Updated: 2025/06/09 17:47:08 by azinchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HUMANB_HPP
-# define HUMANB_HPP
+#include "Replace.hpp"
 
-# include <iostream>
-# include "Weapon.hpp"
-
-class HumanB
-{
-	private:
-		std::string	_name;
-		Weapon*	_weapon;
-		//HumanB may not always have a Weapon (mb nullptr), but ref should always be initialized immediately
-	public:
-		HumanB(const std::string& name);
-		~HumanB();
-		void attack(void);
-		void setWeapon(Weapon& weapon);
-};
-
-#endif

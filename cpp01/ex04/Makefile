@@ -28,7 +28,7 @@ CXXFLAGS 		=	-Wall -Wextra -Werror -std=c++98
 RM				=	rm -f
 
 # Source files
-SRC				=	main.cpp Weapon.cpp HumanA.cpp HumanB.cpp
+SRC				=	main.cpp 
 
 # Object files
 OBJ 			=	$(addprefix $(OBJ_DIR)/, $(SRC:.cpp=.o))

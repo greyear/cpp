@@ -1,32 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanB.hpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: azinchen <azinchen@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/08 21:53:27 by azinchen          #+#    #+#             */
-/*   Updated: 2025/06/08 21:53:29 by azinchen         ###   ########.fr       */
+/*   Created: 2025/06/09 17:31:11 by azinchen          #+#    #+#             */
+/*   Updated: 2025/06/09 17:31:12 by azinchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HUMANB_HPP
-# define HUMANB_HPP
+#include <iostream>
 
-# include <iostream>
-# include "Weapon.hpp"
-
-class HumanB
+int	main(int argc, char *argv[])
 {
-	private:
-		std::string	_name;
-		Weapon*	_weapon;
-		//HumanB may not always have a Weapon (mb nullptr), but ref should always be initialized immediately
-	public:
-		HumanB(const std::string& name);
-		~HumanB();
-		void attack(void);
-		void setWeapon(Weapon& weapon);
-};
-
-#endif
+	if (argc != 4)
+		std::cout << ""
+}
