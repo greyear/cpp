@@ -13,6 +13,30 @@
 #ifndef REPLACE_HPP
 # define REPLACE_HPP
 
+# include <iostream>
+# include <fstream>
+# include <string>
 
+/*
+std::ifstrim - input file stream for reading
+
+*/
+
+class Replace
+{
+	private:
+		std::string	_filename;
+		std::string	_s1;
+		std::string	_s2;
+		bool		readFile(void);
+		bool		writeToFile(void);
+		void		handleLine(std::string &line);
+	public:
+		Replace(const std::string& filename, const std::string& s1,
+			const std::string& s2);
+		~Replace();
+
+
+};
 
 #endif
