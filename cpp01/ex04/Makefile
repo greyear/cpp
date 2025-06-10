@@ -24,7 +24,7 @@ OBJ_DIR 		=	obj
 
 # Compiler and compilation flags
 CXX				=	c++
-CXXFLAGS 		=	-Wall -Wextra -Werror -std=c++98
+CXXFLAGS 		=	-Wall -Wextra -Werror -std=c++11
 RM				=	rm -f
 
 # Source files

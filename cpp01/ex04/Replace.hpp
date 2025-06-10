@@ -40,7 +40,6 @@ class Replace
 			const std::string& s2);
 		~Replace();
 		int			replacer(void);
-
 };
 
 #endif
