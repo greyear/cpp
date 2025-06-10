@@ -17,11 +17,6 @@
 # include <fstream>
 # include <string>
 
-/*
-std::ifstrim - input file stream for reading
-
-*/
-
 class Replace
 {
 	private:
