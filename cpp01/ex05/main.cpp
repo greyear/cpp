@@ -10,4 +10,23 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "Harl.hpp"
 
+int	main(int argc, char *argv[])
+{
+	(void)argv;
+	if (argc != 1)
+	{
+		std::cout << "./harl doesn't need arguments" << std::endl;
+		return (0);
+	}
+	
+	Harl	harl;
+	harl.complain("DEBUG");
+	harl.complain("INFO");
+	harl.complain("WARNING");
+	harl.complain("ERROR");
+	harl.complain("NON EXISTING");
+
+	return (0);
+}

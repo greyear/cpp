@@ -10,13 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <Harl.hpp>
+#include "Harl.hpp"
 
 Harl::Harl()
 {
 
 }
-
 
 void	Harl::debug( void )
 {
@@ -47,13 +46,15 @@ void	Harl::error( void )
 void Harl::complain( std::string level )
 {
 	const std::string commentLevels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
-	void (*functions[4])()
+	void (Harl::*functions[4])() = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
 
 	for (int i = 0; i < 4; i++)
 	{
 		if (commentLevels[i] == level)
 		{
-
+			(this->*functions[i])();
+			return ;
 		}
 	}
+	std::cout << "Level's not found" << std::endl;
 }
