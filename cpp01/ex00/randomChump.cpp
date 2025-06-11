@@ -14,7 +14,6 @@
 
 void	randomChump( std::string name )
 {
-	/*Zombie randomChump = Zombie(name); //it's the same as*/
 	Zombie randomChump(name);
 	randomChump.announce();
 }

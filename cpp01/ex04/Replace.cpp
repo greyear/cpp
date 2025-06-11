@@ -12,17 +12,6 @@
 
 #include "Replace.hpp"
 
-/*
-forbidden: fopen, fclose, fread, fwrite, ...
-allowed:
-	.find(str, pos) - finds 1st occurence of str starting from pos
-	.substr(pos, len) - returns substr starting from pos of length len
-	.length()
-	.empty() - checks if the string is empty
-	+ - concatenates strings
-
-*/
-
 Replace::Replace(const std::string& filename, const std::string& s1,
 			const std::string& s2):
 		_filename(filename), _s1(s1), _s2(s2)
@@ -52,7 +41,7 @@ bool Replace::checkArgs()
 
 bool	Replace::readFile(void)
 {
-	_inputFile.open(_filename); //in success case InputFile will point on start of the file, have error flags, connection with fd, have internal buffer (but it didn't start reading yet)
+	_inputFile.open(_filename);
 	if (!_inputFile)
 	{
 		std::cout << "File can't be open for reading" << std::endl;
@@ -81,11 +70,11 @@ void	Replace::handleLine(std::string &line)
 	pos = 0;
 	while ((found = line.find(_s1, pos)) != std::string::npos)
 	{
-		buf.append(line, pos, found - pos); //before the found part
+		buf.append(line, pos, found - pos);
 		buf.append(_s2);
-		pos = found + _s1.length(); //we'll all the rest starting from the end of previously found s1
+		pos = found + _s1.length();
 	}
-	buf.append(line, pos); //the tail
+	buf.append(line, pos);
 	line = buf;
 }
 

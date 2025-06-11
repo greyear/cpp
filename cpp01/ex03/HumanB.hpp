@@ -21,7 +21,6 @@ class HumanB
 	private:
 		std::string	_name;
 		Weapon*	_weapon;
-		//HumanB may not always have a Weapon (mb nullptr), but ref should always be initialized immediately
 	public:
 		HumanB(const std::string& name);
 		~HumanB();

@@ -24,7 +24,7 @@ class Weapon
 		Weapon();
 		Weapon(const std::string& type);
 		const std::string& getType();
-		void setType(const std::string& newType); //argument is const & NOT TO create a copy!
+		void setType(const std::string& newType);
 };
 
 #endif

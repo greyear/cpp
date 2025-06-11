@@ -21,7 +21,6 @@ class HumanA
 	private:
 		std::string	_name;
 		Weapon&		_weapon;
-		//HumanA must always have a Weapon! So I'll use a ref bc it always exists and can't be nothing
 	public:
 		HumanA(const std::string& name, Weapon& weapon);
 		~HumanA();

@@ -19,8 +19,8 @@ int	main(void)
 {
 	Zombie* heap = newZombie("heapZombie");
 	heap->announce();
-	delete heap; //delete calls destructor itself //do I need to set to NULL?
+	delete heap;
 
-	randomChump("stackZombie"); //stackZombie is deleted automatically when this function returns
+	randomChump("stackZombie");
 	return (0);
 }
