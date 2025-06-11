@@ -1,28 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: azinchen <azinchen@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/11 13:39:28 by azinchen          #+#    #+#             */
-/*   Updated: 2025/06/11 13:39:30 by azinchen         ###   ########.fr       */
+/*   Created: 2025/06/11 20:15:51 by azinchen          #+#    #+#             */
+/*   Updated: 2025/06/11 20:15:52 by azinchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Harl.hpp"
+#include "Fixed.hpp"
 
-int	main(int argc, char *argv[])
-{
-	(void)argv;
-	if (argc != 2)
-	{
-		std::cout << "./harlFilter should have exactly 1 argument" << std::endl;
-		return (0);
-	}
 
-	Harl	harl;
-	harl.switchLevels(argv[1]);
-
-	return (0);
-}
