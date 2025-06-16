@@ -27,7 +27,30 @@ class Fixed
 		Fixed(const Fixed& other);
 		Fixed(const int intVal);
 		Fixed(const float floatVal);
+
 		Fixed& operator=(const Fixed& other);
+		bool operator>(const Fixed& other) const;
+		bool operator<(const Fixed& other) const;
+		bool operator>=(const Fixed& other) const;
+		bool operator<=(const Fixed& other) const;
+		bool operator==(const Fixed& other) const;
+		bool operator!=(const Fixed& other) const;
+
+		Fixed operator+(const Fixed& other) const;
+		Fixed operator-(const Fixed& other) const;
+		Fixed operator*(const Fixed& other) const;
+		Fixed operator/(const Fixed& other) const;
+
+		Fixed& operator++(void); //prefix ++a
+		Fixed operator++(int); //postfix a++
+		Fixed& operator--(void);
+		Fixed operator--(int);
+
+		static Fixed& min(Fixed& a, Fixed& b);
+		static const Fixed& min(const Fixed& a, const Fixed& b);
+		static Fixed& max(Fixed& a, Fixed& b);
+		static const Fixed& max(const Fixed& a, const Fixed& b);
+
 		~Fixed();
 		
 		int getRawBits( void ) const;
