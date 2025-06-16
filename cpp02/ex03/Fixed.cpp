@@ -14,18 +14,18 @@
 
 Fixed::Fixed(): _value(0)
 {
-	//std::cout << "Default constructor called" << std::endl;
+	std::cout << "Default constructor called" << std::endl;
 }
 
 Fixed::Fixed(const Fixed& other)
 {
-	//std::cout << "Copy constructor called" << std::endl;
+	std::cout << "Copy constructor called" << std::endl;
 	*this = other;
 };
 
 Fixed::Fixed(const int intVal)
 {
-	//std::cout << "Int constructor called" << std::endl;
+	std::cout << "Int constructor called" << std::endl;
 	if (intVal > (INT_MAX >> _fractBits) || intVal < (INT_MIN >> _fractBits))
 	{
 		std::cout << "Value is out of range: " << intVal << std::endl;
@@ -37,7 +37,7 @@ Fixed::Fixed(const int intVal)
 
 Fixed::Fixed(const float floatVal)
 {
-	//std::cout << "Float constructor called" << std::endl;
+	std::cout << "Float constructor called" << std::endl;
 	if (floatVal > (INT_MAX / (1 << _fractBits)) || floatVal < (INT_MIN / (1 << _fractBits)))
 	{
 		std::cout << "Value is out of range: " << floatVal << std::endl;
@@ -49,7 +49,7 @@ Fixed::Fixed(const float floatVal)
 
 Fixed& Fixed::operator=(const Fixed& other)
 {
-	//std::cout << "Copy assignment operator called" << std::endl;
+	std::cout << "Copy assignment operator called" << std::endl;
 	if (this != &other)
 	{
 		_value = other.getRawBits();
@@ -226,7 +226,7 @@ const Fixed& Fixed::max(const Fixed& a, const Fixed& b)
 
 Fixed::~Fixed()
 {
-	//std::cout << "Destructor called" << std::endl;
+	std::cout << "Destructor called" << std::endl;
 }
 
 int Fixed::getRawBits( void ) const
