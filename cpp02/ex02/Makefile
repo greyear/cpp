@@ -17,7 +17,7 @@ GREEN			=	\033[0;92m
 BLUE			=	\033[0;94m
 
 # Standard
-NAME 			=	useful
+NAME 			=	talking
 
 # Directories
 OBJ_DIR 		=	obj
