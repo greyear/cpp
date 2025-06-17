@@ -14,27 +14,39 @@
 
 Point::Point(): _x(0), _y(0)
 {
-	std::cout << "Default constructor called" << std::endl;
+	//std::cout << "Default constructor called" << std::endl;
 }
 
 Point::Point(const float xVal, const float yVal): _x(Fixed(xVal)), _y(Fixed(yVal))
 {
-	std::cout << "Constructor with values called" << std::endl;
+	//std::cout << "Constructor with values called" << std::endl;
 }
 
 Point::Point(const Point& other)
 {
-	std::cout << "Copy constructor called" << std::endl;
+	//std::cout << "Copy constructor called" << std::endl;
 	*this = other;
 }
 
 Point& Point::operator=(const Point& other)
 {
-	std::cout << "Assignment operator called, but Point fields are const" << std::endl;
+	//std::cout << "Assignment operator called, but Point fields are const" << std::endl;
+	(void)other;
 	return *this;
 }
 
 Point::~Point()
 {
-	std::cout << "Destructor called" << std::endl;
+	//std::cout << "Destructor called" << std::endl;
 }
+
+Fixed Point::getX(void) const
+{
+	return (_x);
+}
+
+Fixed Point::getY(void) const
+{
+	return (_y);
+}
+
