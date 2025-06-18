@@ -12,18 +12,6 @@
 
 #include "Point.hpp"
 
-/*
-BSP разбивает пространство на части при помощи плоскостей (в 3D) или линий (в 2D).
-Этот процесс происходит рекурсивно — пространство делится на две части, затем 
-каждая часть снова делится, и так далее. В итоге строится BSP-дерево.
-
-Положение точки относительно плоскости определяется скалярным произведением 
-нормали плоскости и координат точки в однородных координатах. Возможно три случая:
-Скалярное произведение больше 0 — точка лежит с фронтальной стороны плоскости;
-Скалярное произведение равно 0 — точка лежит на плоскости;
-Скалярное произведение меньше 0 — точка лежит с обратной стороны плоскости.
-*/
-
 //checks if BOTH c and d are on the same side of the plane from AB
 static	bool isSameSide(const Point& a, const Point& b, const Point& c, const Point& d)
 {
@@ -42,9 +30,6 @@ static	bool isSameSide(const Point& a, const Point& b, const Point& c, const Poi
 	//product of ab*ac and ab*ad
 	Fixed prodAbAc = abx * acy - aby * acx;
 	Fixed prodAbAd = abx * ady - aby * adx;
-
-	std::cout << "prodAbAc: " << prodAbAc << std::endl;
-	std::cout << "prodAbAd: " << prodAbAd << std::endl;
 
 	if (prodAbAc == Fixed(0) || prodAbAd == Fixed(0)) // c or d are ON the line ab
 		return (false);

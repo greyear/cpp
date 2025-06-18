@@ -22,10 +22,9 @@ Point::Point(const float xVal, const float yVal): _x(Fixed(xVal)), _y(Fixed(yVal
 	//std::cout << "Constructor with values called" << std::endl;
 }
 
-Point::Point(const Point& other)
+Point::Point(const Point& other): _x(other.getX()), _y(other.getY())
 {
 	//std::cout << "Copy constructor called" << std::endl;
-	*this = other;
 }
 
 Point& Point::operator=(const Point& other)
