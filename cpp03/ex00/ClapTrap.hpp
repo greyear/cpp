@@ -15,14 +15,15 @@
 
 # include <string>
 # include <iostream>
+# include <climits>
 
 class ClapTrap
 {
 	private:
-		std::string	_name;
-		int			_hitPoints;
-		int			_energyPoints;
-		int			_attackDamage;
+		std::string		_name;
+		unsigned int	_hitPoints;
+		unsigned int	_energyPoints;
+		unsigned int	_attackDamage;
 	public:
 		ClapTrap() = delete;
 		ClapTrap(std::string name);

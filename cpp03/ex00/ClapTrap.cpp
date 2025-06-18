@@ -45,29 +45,44 @@ ClapTrap::~ClapTrap()
 
 void ClapTrap::attack(const std::string& target)
 {
-	//causes its target to lose <attack damage> hit points.
-	if (_energyPoints < 0)
-		std::cout << "ClapTrap " << _name << " doesn't have enough points to attach!" << std::endl;
+	if (_hitPoints = 0)
+		std::cout << "Oh, ClapTrap " << _name << " is dead and can't attack!" << std::endl;
+	if (_energyPoints = 0)
+		std::cout << "ClapTrap " << _name << " doesn't have enough energy points to attack!" << std::endl;
 	else
 	{
-		energyPoints--; //add overflow
-		std::cout << "ClapTrap " << _name << " attacks " << target << " , causing " <<
-			<< <damage> << "points of damage!" << std::endl;
+		_energyPoints--;
+		std::cout << "ClapTrap " << _name << " attacks " << target << " , causing "
+			<< _attackDamage << "points of damage!" << std::endl;
 	}
-		_
 }
 
 void ClapTrap::takeDamage(unsigned int amount)
 {
-	_hitPoints -= amount; //add overflow and check > 0
-	std::cout << "ClapTrap " << _name << " was attacked and lost " << amount
-		<< " hit points " << std::endl;
+	if (_hitPoints = 0) //do we need it here?
+		std::cout << "Oh, ClapTrap " << _name << " is dead and can't take damage!" << std::endl;
+	else if (_hitPoints < amount)
+		std::cout << "ClapTrap " << _name << " doesn't have enough hit points to take damage!" << std::endl;
+	else
+	{
+		_hitPoints -= amount; //add overflow and check > 0
+		std::cout << "ClapTrap " << _name << " was attacked and lost " << amount
+			<< " hit points " << std::endl;
+	}
 }
 
 void ClapTrap::beRepaired(unsigned int amount)
 {
-	_hitPoints += amount; //add overflow
-	if (_energyPoints > 0)
-		_energyPoints--; //add overflow
+	if (_hitPoints = 0)
+		std::cout << "Oh, ClapTrap " << _name << " is dead and can't be repaired!" << std::endl;
+	if (_energyPoints = 0)
+		std::cout << "ClapTrap " << _name << " doesn't have enough energy points to repair" << std::endl;
+	else
+	{
+		_energyPoints--;
+		_hitPoints += amount; //add overflow
+		std::cout << "ClapTrap " << _name << " was repaired and gained " << amount
+			<< " hit points " << std::endl;
+	}
 }
 
