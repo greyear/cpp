@@ -41,8 +41,8 @@ class Fixed
 		Fixed operator*(const Fixed& other) const;
 		Fixed operator/(const Fixed& other) const;
 
-		Fixed& operator++(void); //prefix ++a
-		Fixed operator++(int); //postfix a++
+		Fixed& operator++(void);
+		Fixed operator++(int);
 		Fixed& operator--(void);
 		Fixed operator--(int);
 

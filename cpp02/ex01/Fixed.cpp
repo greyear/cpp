@@ -32,7 +32,7 @@ Fixed::Fixed(const int intVal)
 		std::exit(1);
 	}
 	else
-		_value = intVal << _fractBits; //*256
+		_value = intVal << _fractBits;
 }
 
 Fixed::Fixed(const float floatVal)

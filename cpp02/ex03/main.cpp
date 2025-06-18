@@ -66,7 +66,7 @@ int	main(void)
 	std::cout << "Returns: " << bsp(a, b, c, p9) << std::endl << std::endl;
 
 	Point p10(2.0f, -1.0f);
-	std::cout << "Test case 10: Point outside (below base AB)\n";
+	std::cout << "Test case 10: Point outside (below AB)\n";
 	std::cout << "Expected: 0, ";
 	std::cout << "Returns: " << bsp(a, b, c, p10) << std::endl << std::endl;
 
