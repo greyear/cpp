@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ClapTrap.hpp                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: azinchen <azinchen@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/18 20:58:06 by azinchen          #+#    #+#             */
+/*   Updated: 2025/06/18 20:58:08 by azinchen         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef CLAPTRAP_HPP
 # define CLAPTRAP_HPP
 
 # include <string>
+# include <iostream>
 
 class ClapTrap
 {
