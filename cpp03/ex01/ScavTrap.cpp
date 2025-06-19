@@ -1,0 +1,38 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ScavTrap.cpp                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: azinchen <azinchen@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/19 18:57:42 by azinchen          #+#    #+#             */
+/*   Updated: 2025/06/19 18:57:44 by azinchen         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "ScavTrap.hpp"
+
+ScavTrap::ScavTrap(std::string name): ClapTrap(name)
+{
+	std::cout << "ScavTrap constructor with parameters called" << std::endl;
+	_hitPoints = 100;
+	_energyPoints = 50;
+	_attackDamage = 20;
+}
+
+ScavTrap::ScavTrap(const ScavTrap& other): ClapTrap(other)
+{
+	std::cout << "ScavTrap copy constructor called" << std::endl;
+}
+
+ScavTrap& ScavTrap::operator=(const ScavTrap& other)
+{
+	std::cout << "ScavTrap copy assignment operator called" << std::endl;
+	ClapTrap::operator=(other); //please use the logic of copy assignment operator of parent class
+	return *this;
+}
+
+ScavTrap::~ScavTrap()
+{
+	std::cout << "ScavTrap destructor called" << std::endl;
+}
