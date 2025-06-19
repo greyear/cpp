@@ -15,7 +15,7 @@
 ClapTrap::ClapTrap(std::string name):
 	_name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0)
 {
-	std::cout << "Default constructor called" << std::endl;
+	std::cout << "Constructor with parameters called" << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap& other):
@@ -45,44 +45,61 @@ ClapTrap::~ClapTrap()
 
 void ClapTrap::attack(const std::string& target)
 {
-	if (_hitPoints = 0)
-		std::cout << "Oh, ClapTrap " << _name << " is dead and can't attack!" << std::endl;
-	if (_energyPoints = 0)
-		std::cout << "ClapTrap " << _name << " doesn't have enough energy points to attack!" << std::endl;
-	else
+	if (_hitPoints == 0)
 	{
-		_energyPoints--;
-		std::cout << "ClapTrap " << _name << " attacks " << target << " , causing "
-			<< _attackDamage << "points of damage!" << std::endl;
+		std::cout << "Oh, ClapTrap " << _name << " is unfortunately dead (has no hit points) and can't attack!" << std::endl;
+		return ;
 	}
+	if (_energyPoints == 0)
+	{
+		std::cout << "ClapTrap " << _name << " doesn't have energy points to attack!" << std::endl;
+		return ;
+	}
+	_energyPoints--;
+	std::cout << "ClapTrap " << _name << " attacks " << target << ", causing "
+		<< _attackDamage << " points of damage!" << std::endl;
 }
 
 void ClapTrap::takeDamage(unsigned int amount)
 {
-	if (_hitPoints = 0) //do we need it here?
-		std::cout << "Oh, ClapTrap " << _name << " is dead and can't take damage!" << std::endl;
-	else if (_hitPoints < amount)
-		std::cout << "ClapTrap " << _name << " doesn't have enough hit points to take damage!" << std::endl;
-	else
+	if (_hitPoints == 0)
 	{
-		_hitPoints -= amount; //add overflow and check > 0
-		std::cout << "ClapTrap " << _name << " was attacked and lost " << amount
-			<< " hit points " << std::endl;
+		std::cout << "Oh, ClapTrap " << _name << " is unfortunately dead (has no hit points) and can't take damage!" << std::endl;
+		return ;
 	}
+	if (_hitPoints < amount)
+	{
+		_hitPoints = 0;
+		std::cout << "ClapTrap " << _name << " was attacked and lost all his hit points, now has 0!" << std::endl;
+		return ;
+	}
+	_hitPoints -= amount;
+	std::cout << "ClapTrap " << _name << " was attacked and lost " << amount
+		<< " hit points, now " << _hitPoints << " hit points left" << std::endl;
 }
 
 void ClapTrap::beRepaired(unsigned int amount)
 {
-	if (_hitPoints = 0)
-		std::cout << "Oh, ClapTrap " << _name << " is dead and can't be repaired!" << std::endl;
-	if (_energyPoints = 0)
-		std::cout << "ClapTrap " << _name << " doesn't have enough energy points to repair" << std::endl;
-	else
+	if (_hitPoints == 0)
 	{
-		_energyPoints--;
-		_hitPoints += amount; //add overflow
-		std::cout << "ClapTrap " << _name << " was repaired and gained " << amount
-			<< " hit points " << std::endl;
+		std::cout << "Oh, ClapTrap " << _name << " is unfortunately dead (has no hit points) and can't be repaired!" << std::endl;
+		return ;
 	}
+	if (_energyPoints == 0)
+	{
+		std::cout << "ClapTrap " << _name << " doesn't have energy points to repair" << std::endl;
+		return ;
+	}
+	if (amount > UINT_MAX - _hitPoints)
+	{
+		_hitPoints = UINT_MAX;
+		std::cout << "Overflow when repairing Claptrap " << _name << ", now has max hit points: "
+			<< _hitPoints << std::endl;
+		_energyPoints--;
+		return ;
+	}
+	_hitPoints += amount;
+	std::cout << "ClapTrap " << _name << " was repaired and gained " << amount
+		<< " hit points, now has " << _hitPoints << " hit points" << std::endl;
+	_energyPoints--;
 }
-
