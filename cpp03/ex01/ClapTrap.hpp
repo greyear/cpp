@@ -29,11 +29,11 @@ class ClapTrap
 		ClapTrap(std::string name);
 		ClapTrap(const ClapTrap& other);
 		ClapTrap& operator=(const ClapTrap& other);
-		~ClapTrap();
+		virtual ~ClapTrap();
 
-		void attack(const std::string& target);
-		void takeDamage(unsigned int amount);
-		void beRepaired(unsigned int amount);
+		virtual void attack(const std::string& target);
+		virtual void takeDamage(unsigned int amount);
+		virtual void beRepaired(unsigned int amount);
 };
 
 #endif

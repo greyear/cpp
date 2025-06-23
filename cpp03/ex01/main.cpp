@@ -11,18 +11,20 @@
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 
 int	main(void)
 {
 	{
-	ClapTrap louise("Louise");
-	ClapTrap chloe("Chloe");
+	ScavTrap louise("Louise");
+	ScavTrap chloe("Chloe");
 
 	std::cout << std::endl;
 
 	louise.attack("Chloe");
-	chloe.takeDamage(5);
-	chloe.beRepaired(3);
+	chloe.takeDamage(20);
+	chloe.beRepaired(100);
+	chloe.guardGate();
 
 	std::cout << std::endl;
 	}
@@ -30,15 +32,18 @@ int	main(void)
 	{
 	std::cout << std::endl;
 	
-	ClapTrap marine("Marine");
-	ClapTrap antoine("Antoine");
+	ScavTrap marine("Marine");
+	ScavTrap antoine("Antoine");
 
 	std::cout << std::endl;
 
+	for (int i = 0; i < 5; i++)
+	{
+		marine.attack("Antoine");
+		antoine.takeDamage(20);
+	}
 	marine.attack("Antoine");
-	antoine.takeDamage(10);
-	marine.attack("Antoine");
-	antoine.takeDamage(1);
+	antoine.takeDamage(20);
 	antoine.beRepaired(5);
 
 	std::cout << std::endl;
@@ -47,13 +52,16 @@ int	main(void)
 	{
 	std::cout << std::endl;
 	
-	ClapTrap clement("Clement");
-	ClapTrap paul("Paul");
+	ScavTrap clement("Clement");
+	ScavTrap paul("Paul");
 
 	std::cout << std::endl;
 
-	clement.attack("Paul");
-	paul.takeDamage(10000000);
+	for (int i = 0; i < 5; i++)
+	{
+		clement.attack("Paul");
+		paul.takeDamage(20);
+	}
 	paul.attack("Clement");
 
 	std::cout << std::endl;
@@ -62,13 +70,13 @@ int	main(void)
 	{
 	std::cout << std::endl;
 	
-	ClapTrap marion("Marion");
-	ClapTrap justine("Justine");
+	ScavTrap marion("Marion");
+	ScavTrap justine("Justine");
 
 	std::cout << std::endl;
 
 	marion.attack("Justine");
-	justine.takeDamage(6);
+	justine.takeDamage(20);
 	justine.beRepaired(4294967295);
 
 	std::cout << std::endl;
