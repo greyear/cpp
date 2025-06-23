@@ -28,9 +28,9 @@ class DiamondTrap : public ScavTrap, public FragTrap
 		~DiamondTrap();
 
 		//do we need override here?
-		void attack(const std::string& target) override;
+		/*void attack(const std::string& target) override;
 		void takeDamage(unsigned int amount) override;
-		void beRepaired(unsigned int amount) override;
+		void beRepaired(unsigned int amount) override;*/
 		void whoAmI();
 };
 
