@@ -1,35 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   FragTrap.hpp                                       :+:      :+:    :+:   */
+/*   DiamondTrap.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: azinchen <azinchen@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/23 17:21:01 by azinchen          #+#    #+#             */
-/*   Updated: 2025/06/23 17:21:03 by azinchen         ###   ########.fr       */
+/*   Created: 2025/06/23 21:58:33 by azinchen          #+#    #+#             */
+/*   Updated: 2025/06/23 21:58:34 by azinchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRAGTRAP_HPP
-# define FRAGTRAP_HPP
+#ifndef DIAMONDTRAP_HPP
+# define DIAMONDTRAP_HPP
 
-# include "ClapTrap.hpp"
+# include "ScavTrap.hpp"
+# include "FragTrap.hpp"
 
-class FragTrap : public ClapTrap
+class DiamondTrap : public ScavTrap, public FragTrap
 {
 	private:
-
+		std::string	_name;
 	public:
-		FragTrap() = delete;
-		FragTrap(std::string name);
-		FragTrap(const FragTrap& other);
-		FragTrap& operator=(const FragTrap& other);
-		~FragTrap();
+		DiamondTrap() = delete;
+		DiamondTrap(std::string name);
+		DiamondTrap(const DiamondTrap& other);
+		DiamondTrap& operator=(const DiamondTrap& other);
+		~DiamondTrap();
 
+		//do we need override here?
 		void attack(const std::string& target) override;
 		void takeDamage(unsigned int amount) override;
 		void beRepaired(unsigned int amount) override;
-		void highFivesGuys(void);
+		void whoAmI();
 };
 
 #endif
