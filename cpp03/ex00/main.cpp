@@ -73,5 +73,24 @@ int	main(void)
 
 	std::cout << std::endl;
 	}
+
+	{
+	std::cout << std::endl;
+	
+	ClapTrap gabriel("Gabriel");
+	ClapTrap copy(gabriel);
+	ClapTrap assignment("Assignment");
+	assignment = gabriel;
+	ClapTrap daniel("Daniel");
+
+	std::cout << std::endl;
+
+	gabriel.attack("Daniel");
+	copy.attack("Daniel");
+	assignment.attack("Daniel");
+
+	std::cout << std::endl;
+	}
+
 	return (0);
 }

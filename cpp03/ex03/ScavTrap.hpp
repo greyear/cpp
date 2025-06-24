@@ -38,8 +38,6 @@ class ScavTrap : virtual public ClapTrap
 		~ScavTrap();
 
 		void attack(const std::string& target) override;
-		void takeDamage(unsigned int amount) override;
-		void beRepaired(unsigned int amount) override;
 		void guardGate();
 };
 

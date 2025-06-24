@@ -13,19 +13,22 @@
 #include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
 #include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 
 int	main(void)
 {
 	{
-	FragTrap louise("Louise");
-	FragTrap chloe("Chloe");
+	DiamondTrap louise("Louise");
+	DiamondTrap chloe("Chloe");
 
 	std::cout << std::endl;
 
 	louise.attack("Chloe");
 	chloe.takeDamage(30);
 	chloe.beRepaired(100);
+	chloe.guardGate();
 	chloe.highFivesGuys();
+	chloe.whoAmI();
 
 	std::cout << std::endl;
 	}
@@ -33,8 +36,8 @@ int	main(void)
 	{
 	std::cout << std::endl;
 	
-	FragTrap marine("Marine");
-	FragTrap antoine("Antoine");
+	DiamondTrap marine("Marine");
+	DiamondTrap antoine("Antoine");
 
 	std::cout << std::endl;
 
@@ -53,8 +56,8 @@ int	main(void)
 	{
 	std::cout << std::endl;
 	
-	FragTrap clement("Clement");
-	FragTrap paul("Paul");
+	DiamondTrap clement("Clement");
+	DiamondTrap paul("Paul");
 
 	std::cout << std::endl;
 
@@ -71,8 +74,8 @@ int	main(void)
 	{
 	std::cout << std::endl;
 	
-	FragTrap marion("Marion");
-	FragTrap justine("Justine");
+	DiamondTrap marion("Marion");
+	DiamondTrap justine("Justine");
 
 	std::cout << std::endl;
 
@@ -82,5 +85,24 @@ int	main(void)
 
 	std::cout << std::endl;
 	}
+
+	{
+	std::cout << std::endl;
+	
+	DiamondTrap gabriel("Gabriel");
+	DiamondTrap copy(gabriel);
+	DiamondTrap assignment("Assignment");
+	assignment = gabriel;
+	DiamondTrap daniel("Daniel");
+
+	std::cout << std::endl;
+
+	gabriel.attack("Daniel");
+	copy.attack("Daniel");
+	assignment.attack("Daniel");
+
+	std::cout << std::endl;
+	}
+
 	return (0);
 }

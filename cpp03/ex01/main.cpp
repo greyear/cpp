@@ -81,5 +81,24 @@ int	main(void)
 
 	std::cout << std::endl;
 	}
+
+	{
+	std::cout << std::endl;
+	
+	ScavTrap gabriel("Gabriel");
+	ScavTrap copy(gabriel);
+	ScavTrap assignment("Assignment");
+	assignment = gabriel;
+	ScavTrap daniel("Daniel");
+
+	std::cout << std::endl;
+
+	gabriel.attack("Daniel");
+	copy.attack("Daniel");
+	assignment.attack("Daniel");
+
+	std::cout << std::endl;
+	}
+
 	return (0);
 }

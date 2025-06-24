@@ -27,10 +27,7 @@ class DiamondTrap : public ScavTrap, public FragTrap
 		DiamondTrap& operator=(const DiamondTrap& other);
 		~DiamondTrap();
 
-		//do we need override here?
-		/*void attack(const std::string& target) override;
-		void takeDamage(unsigned int amount) override;
-		void beRepaired(unsigned int amount) override;*/
+		void attack(const std::string& target) override;
 		void whoAmI();
 };
 

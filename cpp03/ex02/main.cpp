@@ -82,5 +82,24 @@ int	main(void)
 
 	std::cout << std::endl;
 	}
+
+	{
+	std::cout << std::endl;
+	
+	FragTrap gabriel("Gabriel");
+	FragTrap copy(gabriel);
+	FragTrap assignment("Assignment");
+	assignment = gabriel;
+	FragTrap daniel("Daniel");
+
+	std::cout << std::endl;
+
+	gabriel.attack("Daniel");
+	copy.attack("Daniel");
+	assignment.attack("Daniel");
+
+	std::cout << std::endl;
+	}
+
 	return (0);
 }
