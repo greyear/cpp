@@ -20,7 +20,7 @@ ScavTrap::ScavTrap(std::string name): ClapTrap(name)
 	_attackDamage = 20;
 }
 
-ScavTrap::ScavTrap(const ScavTrap& other): ClapTrap(other) //copy constructor chaining
+ScavTrap::ScavTrap(const ScavTrap& other): ClapTrap(other)
 {
 	std::cout << "ScavTrap copy constructor called" << std::endl;
 }
@@ -28,7 +28,7 @@ ScavTrap::ScavTrap(const ScavTrap& other): ClapTrap(other) //copy constructor ch
 ScavTrap& ScavTrap::operator=(const ScavTrap& other)
 {
 	std::cout << "ScavTrap copy assignment operator called" << std::endl;
-	ClapTrap::operator=(other); //please use the logic of copy assignment operator of parent class
+	ClapTrap::operator=(other);
 	return *this;
 }
 

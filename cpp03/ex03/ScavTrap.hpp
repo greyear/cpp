@@ -15,17 +15,6 @@
 
 # include "ClapTrap.hpp"
 
-/*
-Inheritance	What happens to base class members in the child?
-	public	public stays public, protected stays protected
-	protected	public becomes protected, protected stays protected
-	private	public and protected both become private
-
-EVEN child class cannot access private fields of parent class!
-protected fields are modifiable from this class and all it's children
-public class fields are modifiable from anywhere but it's dangerous to use them
-*/
-
 class ScavTrap : virtual public ClapTrap
 {
 	private:

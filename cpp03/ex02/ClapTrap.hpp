@@ -19,7 +19,7 @@
 
 class ClapTrap
 {
-	protected: //changed to be able to modify them from child class
+	protected:
 		std::string		_name;
 		unsigned int	_hitPoints;
 		unsigned int	_energyPoints;
