@@ -17,7 +17,7 @@ GREEN			=	\033[0;92m
 BLUE			=	\033[0;94m
 
 # Standard
-NAME 			=	polymorphism
+NAME 			=	animal
 
 # Directories
 OBJ_DIR 		=	obj
@@ -28,7 +28,7 @@ CXXFLAGS 		=	-Wall -Wextra -Werror -Wshadow -std=c++17
 RM				=	rm -f
 
 # Source files
-SRC				=	main.cpp
+SRC				=	main.cpp Animal.cpp
 
 # Object files
 OBJ 			=	$(addprefix $(OBJ_DIR)/, $(SRC:.cpp=.o))
