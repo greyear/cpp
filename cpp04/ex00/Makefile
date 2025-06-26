@@ -28,7 +28,7 @@ CXXFLAGS 		=	-Wall -Wextra -Werror -Wshadow -std=c++17
 RM				=	rm -f
 
 # Source files
-SRC				=	main.cpp Animal.cpp Dog.cpp Cat.cpp
+SRC				=	main.cpp Animal.cpp Dog.cpp Cat.cpp WrongAnimal.cpp WrongCat.cpp
 
 # Object files
 OBJ 			=	$(addprefix $(OBJ_DIR)/, $(SRC:.cpp=.o))

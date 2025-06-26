@@ -28,6 +28,6 @@ class WrongAnimal
 
 		virtual void makeSound() const;
 		const std::string& getType() const;
-}
+};
 
 #endif

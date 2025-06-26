@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "Animal.hpp"
 
 Animal::Animal()
@@ -40,7 +39,7 @@ Animal::~Animal()
 
 void Animal::makeSound() const
 {
-	std::cout << "Some default sound" << std::endl;
+	std::cout << "Some default animal sound" << std::endl;
 }
 
 const std::string& Animal::getType() const
