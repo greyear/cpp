@@ -19,7 +19,7 @@
 int main()
 {
 	{
-	const Animal* meta = new Animal();
+	const Animal* meta = new Animal(); //add malloc protections
 	const Animal* j = new Dog();
 	const Animal* i = new Cat();
 	
