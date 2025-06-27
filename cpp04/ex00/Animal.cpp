@@ -32,7 +32,7 @@ Animal& Animal::operator=(const Animal& other)
 	return *this;
 }
 
-Animal::~Animal()
+Animal::~Animal() // If destructor is not virtual, only Animal's destructor runs
 {
 	std::cout << "Animal destructor called" << std::endl;
 }

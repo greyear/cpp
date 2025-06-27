@@ -45,7 +45,17 @@ int main()
 	}
 
 	{
-		
+	std::cout << std::endl;
+	WrongCat originalWrongCat;
+	WrongCat copyCat(originalWrongCat);
+	std::cout << copyCat.getType() << " " << std::endl;
+	copyCat.makeSound();
+	
+	Dog originalDog;
+	Dog copyDog;
+	copyDog = originalDog;
+	std::cout << copyDog.getType() << " " << std::endl;
+	copyDog.makeSound();
 	}
 
 	return 0;
