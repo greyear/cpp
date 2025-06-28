@@ -19,6 +19,7 @@
 int main()
 {
 	{
+	std::cout << "\n------------Just animals------------\n" << std::endl;
 	const Animal* meta = new Animal(); //add malloc protections
 	const Animal* j = new Dog();
 	const Animal* i = new Cat();
@@ -35,21 +36,21 @@ int main()
 	}
 
 	{
-	std::cout << std::endl;
+	std::cout << "\n------------Wrong animal-------------\n" << std::endl;
 	const WrongAnimal* i = new WrongCat();
 	
 	std::cout << i->getType() << " " << std::endl;
-	i->makeSound(); //will output the wrong cat sound!
+	i->makeSound(); //will output the wrong animal(!) sound!
 
 	delete i;
 	}
 
 	{
-	std::cout << std::endl;
+	std::cout << "\n------------Copying------------------\n" << std::endl;
 	WrongCat originalWrongCat;
 	WrongCat copyCat(originalWrongCat);
 	std::cout << copyCat.getType() << " " << std::endl;
-	copyCat.makeSound();
+	copyCat.makeSound(); //will output the wrong cat sound!
 	
 	Dog originalDog;
 	Dog copyDog;
