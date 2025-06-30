@@ -40,7 +40,25 @@ Brain::~Brain()
 	std::cout << "Brain destructor called" << std::endl;
 }
 
-Brain::printAllIdeas()
+void Brain::setIdea(int index, const std::string& newIdea)
+{
+	if (index >= 0 && index < IDEAS_CAPACITY)
+		this->ideas[index] = newIdea;
+	else
+		std::cout << "Index's out of range in setIdea" << std::endl;
+}
+
+std::string Brain::getIdea(int index) const
+{
+	if (index < 0 || index >= IDEAS_CAPACITY)
+	{
+		std::cout << "Index's out of range in getIdea" << std::endl;
+		return ("");
+	}
+	return (this->ideas[index]);
+}
+
+void Brain::printAllIdeas()
 {
 	for (int i = 0; i < IDEAS_CAPACITY; i++)
 		std::cout << this->ideas[i] << std::endl;

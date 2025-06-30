@@ -16,7 +16,7 @@
 # include <string>
 # include <iostream>
 
-# define IDEAS_CAPACITY = 100;
+# define IDEAS_CAPACITY 100
 
 class Brain
 {
@@ -28,7 +28,9 @@ class Brain
 		Brain& operator=(const Brain& other);
 		~Brain();
 
-		printAllIdeas();
+		void setIdea(int index, const std::string& newIdea);
+		std::string getIdea(int index) const;
+		void printAllIdeas();
 };
 
 #endif
