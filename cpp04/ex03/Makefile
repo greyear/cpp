@@ -17,7 +17,7 @@ GREEN			=	\033[0;92m
 BLUE			=	\033[0;94m
 
 # Standard
-NAME 			=	abstract
+NAME 			=	interface
 
 # Directories
 OBJ_DIR 		=	obj
@@ -28,7 +28,7 @@ CXXFLAGS 		=	-Wall -Wextra -Werror -Wshadow -std=c++17
 RM				=	rm -f
 
 # Source files
-SRC				=	main.cpp AAnimal.cpp Dog.cpp Cat.cpp WrongAnimal.cpp WrongCat.cpp Brain.cpp
+SRC				=	main.cpp AMateria.cpp Ice.cpp Cure.cpp Character.cpp MateriaSource.cpp
 
 # Object files
 OBJ 			=	$(addprefix $(OBJ_DIR)/, $(SRC:.cpp=.o))

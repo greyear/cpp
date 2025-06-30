@@ -116,5 +116,7 @@ int main()
 	testDeepCopy();
 	std::cout << "\n------------Wrong num test---------------------" << std::endl;
 	testWrongNum();
+	//AAnimal cantBeCreated;
+	//const AAnimal* cantbeCreatedToo = new AAnimal();
 	return 0;
 }
