@@ -35,7 +35,7 @@ Cure::~Cure()
 	std::cout << "Cure destructor called" << std::endl;
 }
 
-Cure* Cure::clone() const
+Cure* Cure::clone() const //creates deep copy, new object with same content, but absolutely NEW arrays of _materias
 {
 	std::cout << "Cure clone function called" << std::endl;
 	Cure* cure = new Cure(*this);
