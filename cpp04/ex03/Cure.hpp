@@ -13,13 +13,20 @@
 #ifndef CURE_HPP
 # define CURE_HPP
 
+# include <string>
 # include "AMateria.hpp"
+# include "ICharacter.hpp"
 
 class Cure : public AMateria
 {
 	public:
 		Cure();
+		Cure(const Cure& other);
+		Cure& operator=(const Cure& other);
+		~Cure() override;
 
+		Cure* clone() const override; //AMateria* newIce = ice.clone(); // создает новый Ice
+		void use(ICharacter& target) override;
 };
 
 #endif

@@ -12,4 +12,32 @@
 
 #include "Ice.hpp"
 
+Ice::Ice() : AMateria("ice")
+{
+	std::cout << "Ice default constructor called" << std::endl;
+}
 
+Ice::Ice(const Ice& other)
+{
+	std::cout << "Ice copy constructor called" << std::endl;
+}
+
+Ice& Ice::operator=(const Ice& other)
+{
+	std::cout << "Ice copy assignment operator called" << std::endl;
+}
+
+Ice::~Ice()
+{
+	std::cout << "Ice destructor called" << std::endl;
+}
+
+Ice* Ice::clone() const
+{
+
+} //AMateria* newIce = ice.clone(); // создает новый Ice
+
+void Ice::use(ICharacter& target)
+{
+
+}
