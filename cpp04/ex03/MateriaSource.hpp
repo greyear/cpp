@@ -13,16 +13,23 @@
 #ifndef MATERIASOURCE_HPP
 # define MATERIASOURCE_HPP
 
-
+# include <string>
 # include "IMateriaSource.hpp"
-# include "AMateria.hpp"
 
-class MateriaSource
+# define MATERIA_CAPACITY 4
+
+class MateriaSource : public IMateriaSource
 {
+	private:
+		AMateria* _materias[MATERIA_CAPACITY];
 	public:
-		virtual ~IMateriaSource() {}
-		virtual void learnMateria(AMateria*) = 0;
-		virtual AMateria* createMateria(std::string const & type) = 0;
+		MateriaSource();
+		MateriaSource(const MateriaSource& other);
+		MateriaSource& operator=(const MateriaSource& other);
+		~MateriaSource() override;
+
+		void learnMateria(AMateria* materia) override;
+		AMateria* createMateria(std::string const& type) override;
 };
 
 #endif

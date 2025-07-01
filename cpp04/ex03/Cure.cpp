@@ -16,6 +16,7 @@ Cure::Cure() : AMateria("cure")
 {
 	std::cout << "Cure default constructor called" << std::endl;
 }
+
 Cure::Cure(const Cure& other) : AMateria(other)
 {
 	std::cout << "Cure copy constructor called" << std::endl;
@@ -40,8 +41,9 @@ Cure* Cure::clone() const
 	Cure* cure = new Cure(*this);
 	return (cure);
 }
+
 //AMateria* newIce = ice.clone(); // создает новый Ice
 void Cure::use(ICharacter& target)
 {
-	std::cout << "* heals " << << "’s wounds *" << std::endl; //add name
+	std::cout << "* heals " << name << "’s wounds *" << std::endl; //add name
 }
