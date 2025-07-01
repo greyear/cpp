@@ -42,8 +42,7 @@ Cure* Cure::clone() const //creates deep copy, new object with same content, but
 	return (cure);
 }
 
-//AMateria* newIce = ice.clone(); // создает новый Ice
 void Cure::use(ICharacter& target)
 {
-	std::cout << "* heals " << name << "’s wounds *" << std::endl; //add name
+	std::cout << "* heals " << target.getName() << "’s wounds *" << std::endl; //add name
 }

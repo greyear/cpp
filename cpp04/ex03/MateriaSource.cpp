@@ -71,7 +71,7 @@ void MateriaSource::learnMateria(AMateria* materia)
 	{
 		if (_materias[i] == nullptr)
 		{
-			_materias[i] = materia; //clone???
+			_materias[i] = materia;
 			std::cout << "Materia " << materia->getType() << " is learned" << std::endl;
 			return ;
 		}
@@ -83,5 +83,5 @@ void MateriaSource::learnMateria(AMateria* materia)
 
 AMateria* MateriaSource::createMateria(std::string const& type)
 {
-
+	
 }
