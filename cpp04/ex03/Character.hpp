@@ -13,9 +13,28 @@
 #ifndef CHARACTER_HPP
 # define CHARACTER_HPP
 
-class Character
+# include <string>
+# include "ICharacter.hpp"
+
+# define INVENTORY_CAPACITY 4
+
+class Character : public ICharacter
 {
-	
+	private:
+		std::string _name;
+		AMateria* _inventory[INVENTORY_CAPACITY];
+
+	public:
+		Character() = delete;
+		Character(std::string const& name);
+		Character(const Character& other);
+		Character& operator=(const Character& other);
+		~Character() override;
+
+		std::string const& getName() const override;
+		void equip(AMateria* m) override;
+		void unequip(int idx) override;
+		void use(int idx, ICharacter& target) override;
 };
 
 #endif

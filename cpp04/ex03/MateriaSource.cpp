@@ -12,7 +12,7 @@
 
 #include "MateriaSource.hpp"
 
-MateriaSource::MateriaSource(): _materias{nullptr}
+MateriaSource::MateriaSource(): _materias{nullptr} //This does not initialize the entire array _materias to nullptr.????
 {
 	std::cout << "MateriaSource default constructor called" << std::endl;
 }
@@ -83,5 +83,14 @@ void MateriaSource::learnMateria(AMateria* materia)
 
 AMateria* MateriaSource::createMateria(std::string const& type)
 {
-	
+	for (int i = 0; i < MATERIA_CAPACITY; i++)
+	{
+		if (_materias[i] && type == _materias[i]->getType())
+		{
+			std::cout << "Materia " << type << " is created" << std::endl;
+			return (_materias[i]->clone());
+		}
+	}
+	std::cout << "There's no materia with given type: " << type << std::endl;
+	return (nullptr);
 }
