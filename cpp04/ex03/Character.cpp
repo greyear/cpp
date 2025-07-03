@@ -13,16 +13,13 @@
 #include "Character.hpp"
 
 Character::Character(std::string const& name):
-	_name(name), _inventory{nullptr}, _left{nullptr}, _leftIndex(0) //all nulls?? if not make a loop
+	_name(name), _inventory{}, _left{}, _leftIndex(0)
 {
 	//std::cout << "Character default constructor called" << std::endl;
-	std::cout << "0: " << _inventory[0] << std::endl;
-	std::cout << "1: " << _inventory[1] << std::endl;
-	std::cout << "2: " << _inventory[2] << std::endl;
-	std::cout << "3: " << _inventory[3] << std::endl;
 }
 
-Character::Character(const Character& other): _name(other._name), _left{nullptr}, _leftIndex(other._leftIndex) //check also for nulls
+Character::Character(const Character& other):
+	_name(other._name), _left{}, _leftIndex(0)
 {
 	//std::cout << "Character copy constructor called" << std::endl;
 	for (int i = 0; i < INVENTORY_CAPACITY; i++)
@@ -94,7 +91,7 @@ void Character::equip(AMateria* m)
 		if (_inventory[i] == nullptr)
 		{
 			_inventory[i] = m;
-			std::cout << this->getName() << ": materia " << m->getType() << " is equipped, slot number " << i << std::endl;
+			//std::cout << this->getName() << ": materia " << m->getType() << " is equipped, slot number " << i << std::endl;
 			return ;
 		}
 	}
@@ -105,7 +102,7 @@ void Character::equip(AMateria* m)
 
 void Character::leaveOnTheFloor(AMateria* m)
 {
-	if (m == nullptr) //overkill?
+	if (m == nullptr)
 	{
 		std::cout << "Materia is empty and can't be dropped by " << this->getName() << std::endl;
 		return ;
@@ -123,7 +120,7 @@ void Character::leaveOnTheFloor(AMateria* m)
 			_left[i - 1] = _left[i];
 		_left[LEFT_CAPACITY - 1] = m;
 	}
-	std::cout << "Materia " << m->getType() << " is dropped on the floor by " << this->getName() << std::endl;
+	//std::cout << "Materia " << m->getType() << " is dropped on the floor by " << this->getName() << std::endl;
 }
 
 void Character::unequip(int idx)
@@ -138,7 +135,7 @@ void Character::unequip(int idx)
 		std::cout << "Materia with this index doesn't exist, " << this->getName() << " can't be unequipped" << std::endl;
 		return;
 	}	
-	std::cout << this->getName() << "'s inventory " << idx << " slot (" <<  _inventory[idx]->getType() << ") is unequipped" << std::endl;
+	//std::cout << this->getName() << "'s inventory " << idx << " slot (" <<  _inventory[idx]->getType() << ") is unequipped" << std::endl;
 	leaveOnTheFloor(_inventory[idx]);
 	_inventory[idx] = nullptr;
 }

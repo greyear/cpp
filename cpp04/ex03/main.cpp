@@ -42,13 +42,13 @@ void testMandatory()
 
 void testInventoryCapacity()
 {
-	ICharacter* me = new Character("me");
-	me->equip(new Ice());
-	me->equip(new Cure());
-	me->equip(new Ice());
-	me->equip(new Cure());
-	me->equip(new Ice()); //5th!!!!!!!
-	delete me;
+	ICharacter* rich = new Character("rich");
+	rich->equip(new Ice());
+	rich->equip(new Cure());
+	rich->equip(new Ice());
+	rich->equip(new Cure());
+	rich->equip(new Ice()); //5th!!!!!!!
+	delete rich;
 }
 
 void testMateriaSourceCapacity()
@@ -69,9 +69,9 @@ void testDeepCopy()
 	a.equip(new Cure());
 
 	Character b = a;
-	a.unequip(0); //add character's name
+	a.unequip(0);
 	a.use(0, b);
-	//b.use(0, a);
+	b.use(0, a);
 
 }
 
@@ -84,16 +84,40 @@ void testWrongMateria()
 		std::cout << "Unknown materia type wasn't created" << std::endl;
 }
 
+void testWrongUsing()
+{
+	Character paul("paul");
+	Character jack("jack");
+	AMateria* m = new Ice();
+	paul.equip(m);
+	paul.use(-1, jack);
+	//paul.use(0, jack);
+	paul.unequip(0);
+	paul.use(0, jack);
+}
+
+void testUnequip()
+{
+	Character steve("steve");
+	AMateria* m = new Ice();
+	steve.equip(m);
+	steve.unequip(0);
+	std::cout << "Materia is not deleted (it's needed to leave it): " << m->getType() << std::endl;
+}
+
 int main()
 {
-	/*std::cout << "\n------------Test from the subject-------------" << std::endl;
+	std::cout << "\n------------Test from the subject-------------" << std::endl;
 	testMandatory();
 	std::cout << "\n------------Capacity tests--------------------" << std::endl;
 	testInventoryCapacity();
 	testMateriaSourceCapacity();
-	std::cout << "\n------------Deep copy tests-------------------" << std::endl;*/
+	std::cout << "\n------------Deep copy tests-------------------" << std::endl;
 	testDeepCopy();
-	/*std::cout << "\n------------Wrong materia creation test-------" << std::endl;
-	testWrongMateria();*/
+	std::cout << "\n------------Wrong input tests-----------------" << std::endl;
+	testWrongMateria();
+	testWrongUsing();
+	std::cout << "\n------------Unequip method test---------------" << std::endl;
+	testUnequip();
 	return 0;
 }
