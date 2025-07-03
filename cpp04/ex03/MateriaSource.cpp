@@ -14,12 +14,12 @@
 
 MateriaSource::MateriaSource(): _materias{nullptr} //This does not initialize the entire array _materias to nullptr.????
 {
-	std::cout << "MateriaSource default constructor called" << std::endl;
+	//std::cout << "MateriaSource default constructor called" << std::endl;
 }
 
 MateriaSource::MateriaSource(const MateriaSource& other)
 {
-	std::cout << "MateriaSource copy constructor called" << std::endl;
+	//std::cout << "MateriaSource copy constructor called" << std::endl;
 	for (int i = 0; i < MATERIA_CAPACITY; i++)
 	{
 		if (other._materias[i] == nullptr)
@@ -31,7 +31,7 @@ MateriaSource::MateriaSource(const MateriaSource& other)
 
 MateriaSource& MateriaSource::operator=(const MateriaSource& other)
 {
-	std::cout << "MateriaSource copy assignment operator called" << std::endl;
+	//std::cout << "MateriaSource copy assignment operator called" << std::endl;
 	if (this != &other)
 	{
 		for (int i = 0; i < MATERIA_CAPACITY; i++)
@@ -52,7 +52,7 @@ MateriaSource& MateriaSource::operator=(const MateriaSource& other)
 
 MateriaSource::~MateriaSource()
 {
-	std::cout << "MateriaSource destructor called" << std::endl;
+	//std::cout << "MateriaSource destructor called" << std::endl;
 	for (int i = 0; i < MATERIA_CAPACITY; i++)
 	{
 		if (_materias[i] != nullptr)

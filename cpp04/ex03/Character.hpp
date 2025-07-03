@@ -22,9 +22,11 @@
 class Character : public ICharacter
 {
 	private:
-		std::string _name;
-		AMateria* _inventory[INVENTORY_CAPACITY];
-		AMateria* _left[LEFT_CAPACITY];
+		std::string	_name;
+		AMateria*	_inventory[INVENTORY_CAPACITY];
+		AMateria*	_left[LEFT_CAPACITY];
+		int			_leftIndex;
+		void		leaveOnTheFloor(AMateria* m);
 
 	public:
 		Character() = delete;

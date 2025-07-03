@@ -16,7 +16,7 @@
 #include "Character.hpp"
 #include "MateriaSource.hpp"
 
-int main()
+void testMandatory()
 {
 	IMateriaSource* src = new MateriaSource();
 	src->learnMateria(new Ice());
@@ -24,7 +24,7 @@ int main()
 
 	ICharacter* me = new Character("me");
 
-	AMateria* tmp;
+	AMateria* tmp; //?
 	tmp = src->createMateria("ice");
 	me->equip(tmp);
 	tmp = src->createMateria("cure");
@@ -38,6 +38,62 @@ int main()
 	delete bob;
 	delete me;
 	delete src;
+}
 
+void testInventoryCapacity()
+{
+	ICharacter* me = new Character("me");
+	me->equip(new Ice());
+	me->equip(new Cure());
+	me->equip(new Ice());
+	me->equip(new Cure());
+	me->equip(new Ice()); //5th!!!!!!!
+	delete me;
+}
+
+void testMateriaSourceCapacity()
+{
+	IMateriaSource* src = new MateriaSource();
+	src->learnMateria(new Ice());
+	src->learnMateria(new Cure());
+	src->learnMateria(new Ice());
+	src->learnMateria(new Cure());
+	src->learnMateria(new Ice()); //5th
+	delete src;
+}
+
+void testDeepCopy()
+{
+	Character a("michael");
+	a.equip(new Ice());
+	a.equip(new Cure());
+
+	Character b = a;
+	a.unequip(0); //add character's name
+	a.use(0, b);
+	//b.use(0, a);
+
+}
+
+void testWrongMateria()
+{
+	MateriaSource source;
+	source.learnMateria(new Ice());
+	AMateria* unknown = source.createMateria("fire");
+	if (!unknown)
+		std::cout << "Unknown materia type wasn't created" << std::endl;
+}
+
+int main()
+{
+	/*std::cout << "\n------------Test from the subject-------------" << std::endl;
+	testMandatory();
+	std::cout << "\n------------Capacity tests--------------------" << std::endl;
+	testInventoryCapacity();
+	testMateriaSourceCapacity();
+	std::cout << "\n------------Deep copy tests-------------------" << std::endl;*/
+	testDeepCopy();
+	/*std::cout << "\n------------Wrong materia creation test-------" << std::endl;
+	testWrongMateria();*/
 	return 0;
 }
