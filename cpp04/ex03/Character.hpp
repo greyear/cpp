@@ -17,12 +17,14 @@
 # include "ICharacter.hpp"
 
 # define INVENTORY_CAPACITY 4
+# define LEFT_CAPACITY 20
 
 class Character : public ICharacter
 {
 	private:
 		std::string _name;
 		AMateria* _inventory[INVENTORY_CAPACITY];
+		AMateria* _left[LEFT_CAPACITY];
 
 	public:
 		Character() = delete;

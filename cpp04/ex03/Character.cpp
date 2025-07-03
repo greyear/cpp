@@ -13,12 +13,16 @@
 #include "Character.hpp"
 
 Character::Character(std::string const& name):
-	_name(name), _inventory{nullptr} //all nulls??
+	_name(name), _inventory{nullptr}, _left{nullptr} //all nulls?? if not make a loop
 {
 	std::cout << "Character default constructor called" << std::endl;
+	std::cout << "0: " << _inventory[0] << std::endl;
+	std::cout << "1: " << _inventory[1] << std::endl;
+	std::cout << "2: " << _inventory[2] << std::endl;
+	std::cout << "3: " << _inventory[3] << std::endl;
 }
 
-Character::Character(const Character& other): _name(other._name)
+Character::Character(const Character& other): _name(other._name), _left{nullptr} //check also for nulls
 {
 	std::cout << "Character copy constructor called" << std::endl;
 	for (int i = 0; i < INVENTORY_CAPACITY; i++)
@@ -61,6 +65,14 @@ Character::~Character()
 		{
 			delete _inventory[i];
 			_inventory[i] = nullptr;
+		}
+	}
+	for (int i = 0; i < LEFT_CAPACITY; i++)
+	{
+		if (_left[i] != nullptr)
+		{
+			delete _left[i];
+			_left[i] = nullptr;
 		}
 	}
 }
