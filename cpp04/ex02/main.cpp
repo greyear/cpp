@@ -33,8 +33,10 @@ void testMandatory()
 	catch (const std::bad_alloc& e)
 	{
 		std::cerr << "Memory allocation failed: " << e.what() << std::endl;
-		delete dog;
-		delete cat;
+		if (dog)
+			delete dog;
+		if (cat)
+			delete cat;
 	}
 }
 
@@ -57,7 +59,10 @@ void testArray()
 	{
 		std::cerr << "Memory allocation failed: " << e.what() << std::endl;
 		for (int i = 0; i < 10; i++)
-			delete arr[i];
+		{
+			if (arr[i])
+				delete arr[i];
+		}
 	}
 }
 

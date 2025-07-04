@@ -18,48 +18,98 @@
 
 void testMandatory()
 {
-	IMateriaSource* src = new MateriaSource();
-	src->learnMateria(new Ice());
-	src->learnMateria(new Cure());
+	IMateriaSource* src = nullptr;
+	ICharacter* me = nullptr;
+	ICharacter* bob = nullptr;
+	AMateria* tmp1 = nullptr;
+	AMateria* tmp2 = nullptr;
 
-	ICharacter* me = new Character("me");
+	try
+	{
+		src = new MateriaSource();
+		src->learnMateria(new Ice());
+		src->learnMateria(new Cure());
 
-	AMateria* tmp; //?
-	tmp = src->createMateria("ice");
-	me->equip(tmp);
-	tmp = src->createMateria("cure");
-	me->equip(tmp);
+		me = new Character("me");
 
-	ICharacter* bob = new Character("bob");
+		tmp1 = src->createMateria("ice");
+		me->equip(tmp1);
+		tmp1 = nullptr;
 
-	me->use(0, *bob);
-	me->use(1, *bob);
+		tmp2 = src->createMateria("cure");
+		me->equip(tmp2);
+		tmp2 = nullptr;
 
-	delete bob;
-	delete me;
-	delete src;
+		bob = new Character("bob");
+
+		me->use(0, *bob);
+		me->use(1, *bob);
+
+		delete bob;
+		delete me;
+		delete src;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << "Memory allocation failed: " << e.what() << std::endl;
+
+		if (bob)
+			delete bob;
+		if (me)
+			delete me;
+		if (src)
+			delete src;
+		if (tmp1)
+			delete tmp1;
+		if (tmp2)
+			delete tmp2;
+	}
 }
 
 void testInventoryCapacity()
 {
-	ICharacter* rich = new Character("rich");
-	rich->equip(new Ice());
-	rich->equip(new Cure());
-	rich->equip(new Ice());
-	rich->equip(new Cure());
-	rich->equip(new Ice()); //5th!!!!!!!
-	delete rich;
+	ICharacter* rich = nullptr;
+
+	try
+	{
+		rich = new Character("rich");
+		rich->equip(new Ice());
+		rich->equip(new Cure());
+		rich->equip(new Ice());
+		rich->equip(new Cure());
+		rich->equip(new Ice()); //5th!!!!!!!
+		delete rich;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << "Memory allocation failed: " << e.what() << std::endl;
+
+		if (rich)
+			delete rich;
+	}
 }
 
 void testMateriaSourceCapacity()
 {
-	IMateriaSource* src = new MateriaSource();
-	src->learnMateria(new Ice());
-	src->learnMateria(new Cure());
-	src->learnMateria(new Ice());
-	src->learnMateria(new Cure());
-	src->learnMateria(new Ice()); //5th
-	delete src;
+	IMateriaSource* src = nullptr;
+
+	try
+	{
+		src = new MateriaSource();
+		src->learnMateria(new Ice());
+		src->learnMateria(new Cure());
+		src->learnMateria(new Ice());
+		src->learnMateria(new Cure());
+		src->learnMateria(new Ice()); //5th
+		delete src;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << "Memory allocation failed: " << e.what() << std::endl;
+
+		if (src)
+			delete src;
+	}
 }
 
 void testDeepCopy()
@@ -72,7 +122,6 @@ void testDeepCopy()
 	a.unequip(0);
 	a.use(0, b);
 	b.use(0, a);
-
 }
 
 void testWrongMateria()
@@ -91,7 +140,6 @@ void testWrongUsing()
 	AMateria* m = new Ice();
 	paul.equip(m);
 	paul.use(-1, jack);
-	//paul.use(0, jack);
 	paul.unequip(0);
 	paul.use(0, jack);
 }
