@@ -25,7 +25,7 @@ class Ice : public AMateria
 		Ice& operator=(const Ice& other);
 		~Ice() override;
 
-		Ice* clone() const override; //AMateria* newIce = ice.clone(); // создает новый Ice
+		Ice* clone() const override;
 		void use(ICharacter& target) override;
 };
 

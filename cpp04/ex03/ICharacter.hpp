@@ -14,7 +14,7 @@
 # define ICHARACTER_HPP
 
 # include <string>
-# include "AMateria.hpp" // do I need this?
+# include "AMateria.hpp"
 
 class AMateria;
 

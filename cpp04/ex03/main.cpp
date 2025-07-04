@@ -77,7 +77,7 @@ void testInventoryCapacity()
 		rich->equip(new Cure());
 		rich->equip(new Ice());
 		rich->equip(new Cure());
-		rich->equip(new Ice()); //5th!!!!!!!
+		rich->equip(new Ice());
 		delete rich;
 	}
 	catch(const std::exception& e)
@@ -100,7 +100,7 @@ void testMateriaSourceCapacity()
 		src->learnMateria(new Cure());
 		src->learnMateria(new Ice());
 		src->learnMateria(new Cure());
-		src->learnMateria(new Ice()); //5th
+		src->learnMateria(new Ice());
 		delete src;
 	}
 	catch(const std::exception& e)

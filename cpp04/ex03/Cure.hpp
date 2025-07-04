@@ -25,7 +25,7 @@ class Cure : public AMateria
 		Cure& operator=(const Cure& other);
 		~Cure() override;
 
-		Cure* clone() const override; //AMateria* newIce = ice.clone(); // создает новый Ice
+		Cure* clone() const override;
 		void use(ICharacter& target) override;
 };
 

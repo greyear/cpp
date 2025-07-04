@@ -96,7 +96,7 @@ void Character::equip(AMateria* m)
 		}
 	}
 	std::cout << this->getName() << "'s inventory's full" << std::endl;
-	delete m; //without this I have leaks
+	delete m;
 	m = nullptr;
 }
 

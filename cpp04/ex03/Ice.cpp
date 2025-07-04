@@ -40,10 +40,9 @@ Ice* Ice::clone() const
 	//std::cout << "Ice clone function called" << std::endl;
 	Ice* ice = new Ice(*this);
 	return (ice);
-
-} //AMateria* newIce = ice.clone(); // создает новый Ice
+} 
 
 void Ice::use(ICharacter& target)
 {
-	std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl; //check name
+	std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
 }

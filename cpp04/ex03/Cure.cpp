@@ -35,7 +35,7 @@ Cure::~Cure()
 	//std::cout << "Cure destructor called" << std::endl;
 }
 
-Cure* Cure::clone() const //creates deep copy, new object with same content, but absolutely NEW arrays of _materias
+Cure* Cure::clone() const
 {
 	//std::cout << "Cure clone function called" << std::endl;
 	Cure* cure = new Cure(*this);
@@ -44,5 +44,5 @@ Cure* Cure::clone() const //creates deep copy, new object with same content, but
 
 void Cure::use(ICharacter& target)
 {
-	std::cout << "* heals " << target.getName() << "’s wounds *" << std::endl; //add name
+	std::cout << "* heals " << target.getName() << "’s wounds *" << std::endl;
 }

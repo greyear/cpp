@@ -20,7 +20,7 @@ int main()
 {
 	{
 	std::cout << "\n------------Just animals------------\n" << std::endl;
-	const Animal* meta = new Animal(); //add malloc protections
+	const Animal* meta = new Animal();
 	const Animal* j = new Dog();
 	const Animal* i = new Cat();
 	
