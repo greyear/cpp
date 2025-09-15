@@ -7,13 +7,15 @@
 
 void successPath(void)
 {
-    std::cout << "1) success path test" << std::endl;
+    std::cout << "\n1) success path test" << std::endl;
     try
     {
         Bureaucrat shawn("Shawn", 3);
         std::cout << shawn << std::endl;
-        shawn.incrementGrade();
-        std::cout << "After incrementing: " << shawn << std::endl;
+        Form form("Very important form", 4, 2);
+        std::cout << form << std::endl;
+        shawn.signForm(form);
+        std::cout << form << std::endl;
     }
     catch(const std::exception& e)
     {
@@ -21,13 +23,17 @@ void successPath(void)
     }
 }
 
-void tooHighCreated(void)
+void gradesAreTheSame(void)
 {
-    std::cout << "\n2) creating with too high grade" << std::endl;
+    std::cout << "\n2) bureaucrat's grade is the same with form's grade to sign" << std::endl;
     try
     {
-        Bureaucrat pete("Pete", 0);
-        std::cout << pete << std::endl;
+        Bureaucrat konstantin("Konstantin", 3);
+        std::cout << konstantin << std::endl;
+        Form form("Very important form", 3, 2);
+        std::cout << form << std::endl;
+        konstantin.signForm(form);
+        std::cout << form << std::endl;
     }
     catch(const std::exception& e)
     {
@@ -35,15 +41,13 @@ void tooHighCreated(void)
     }
 }
 
-void tooHighWhenIncreased(void)
+void formWithTwoLowGrades(void)
 {
-    std::cout << "\n3) too high grade after increasing" << std::endl;
+    std::cout << "\n3) creating form with low grade to sign and low grade to execute" << std::endl;
     try
     {
-        Bureaucrat marti("Marti", 1);
-        std::cout << marti << std::endl;
-        marti.incrementGrade();
-        std::cout << "After incrementing: " << marti << std::endl;
+        Form form("Very important form", 151, 152);
+        std::cout << form << std::endl;
     }
     catch(const std::exception& e)
     {
@@ -51,13 +55,13 @@ void tooHighWhenIncreased(void)
     }
 }
 
-void tooLowCreated(void)
+void formWithOneLowAndOneHigh(void)
 {
-    std::cout << "\n4) creating with too low grade" << std::endl;
+    std::cout << "\n4) creating form with low grade to sign and high grade to execute" << std::endl;
     try
     {
-        Bureaucrat rick("Rick", 151);
-        std::cout << rick << std::endl;
+        Form form("Very important form", 151, 0);
+        std::cout << form << std::endl;
     }
     catch(const std::exception& e)
     {
@@ -65,15 +69,59 @@ void tooLowCreated(void)
     }
 }
 
-void tooLowWhenDecreased(void)
+void tooLowToSign(void)
 {
-    std::cout << "\n5) too low grade after decreasing" << std::endl;
+    std::cout << "\n5) bureaucrat with low grade's signing form with higher grade to sign" << std::endl;
     try
     {
-        Bureaucrat pablo("Pablo", 150);
-        std::cout << pablo << std::endl;
-        pablo.decrementGrade();
-        std::cout << "After decrementing: " << pablo << std::endl;
+        Bureaucrat alex("Alex", 3);
+        std::cout << alex << std::endl;
+        Form form("Very important form", 2, 4);
+        std::cout << form << std::endl;
+        alex.signForm(form);
+        std::cout << form << std::endl;
+    }
+    catch(const std::exception& e)
+    {
+        std::cout << e.what() << std::endl;
+    }
+}
+
+void alreadySigned(void)
+{
+    std::cout << "\n6) bureaucrat's trying to sign one form twice" << std::endl;
+    try
+    {
+        Bureaucrat shawn("Shawn", 3);
+        std::cout << shawn << std::endl;
+        Form form("Very important form", 150, 150);
+        std::cout << form << std::endl;
+        shawn.signForm(form);
+        std::cout << form << std::endl;
+        shawn.signForm(form);
+        std::cout << form << std::endl;
+    }
+    catch(const std::exception& e)
+    {
+        std::cout << e.what() << std::endl;
+    }
+}
+
+void signedByTwo(void)
+{
+    std::cout << "\n7) two bureaucrats're trying to sign one form" << std::endl;
+    try
+    {
+        Bureaucrat shawn("Shawn", 3);
+        std::cout << shawn << std::endl;
+        Form form("Very important form", 4, 1);
+        std::cout << form << std::endl;
+        shawn.signForm(form);
+        std::cout << form << std::endl;
+        Bureaucrat paul("Paul", 3);
+        std::cout << paul << std::endl;
+        paul.signForm(form);
+        std::cout << form << std::endl;
     }
     catch(const std::exception& e)
     {
@@ -84,10 +132,12 @@ void tooLowWhenDecreased(void)
 int main(void)
 {
     successPath();
-    tooHighCreated();
-    tooHighWhenIncreased();
-    tooLowCreated();
-    tooLowWhenDecreased();
+    gradesAreTheSame();
+    formWithTwoLowGrades();
+    formWithOneLowAndOneHigh();
+    tooLowToSign();
+    alreadySigned();
+    signedByTwo();
 
     return (0);
 }

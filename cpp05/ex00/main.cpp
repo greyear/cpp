@@ -6,7 +6,7 @@
 
 void successPath(void)
 {
-    std::cout << "1) success path test" << std::endl;
+    std::cout << "\n1) success path test" << std::endl;
     try
     {
         Bureaucrat shawn("Shawn", 3);
@@ -20,7 +20,7 @@ void successPath(void)
     }
 }
 
-void tooHighCreated(void)
+void gradeTooHigh(void)
 {
     std::cout << "\n2) creating with too high grade" << std::endl;
     try
@@ -50,7 +50,7 @@ void tooHighWhenIncreased(void)
     }
 }
 
-void tooLowCreated(void)
+void gradeTooLow(void)
 {
     std::cout << "\n4) creating with too low grade" << std::endl;
     try
@@ -83,9 +83,9 @@ void tooLowWhenDecreased(void)
 int main(void)
 {
     successPath();
-    tooHighCreated();
+    gradeTooHigh();
     tooHighWhenIncreased();
-    tooLowCreated();
+    gradeTooLow();
     tooLowWhenDecreased();
 
     return (0);
