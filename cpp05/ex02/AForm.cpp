@@ -13,7 +13,7 @@ AForm::AForm(const std::string& name, int gradeToSign, int gradeToExecute, const
 		throw AForm::GradeTooLowException();
 }
 
-const std::string&  AForm::getName() const
+const std::string& AForm::getName() const
 {
     return(_name);
 }
@@ -33,18 +33,27 @@ int AForm::getGradeToExecute() const
     return(_gradeToExecute);
 }
 
-const std::string&	AForm::getTarget() const
+const std::string& AForm::getTarget() const
 {
     return(_target);
 }
 
-void    AForm::beSigned(const Bureaucrat& b)
+void AForm::beSigned(const Bureaucrat& b)
 {
     if (b.getGrade() > this->getGradeToSign())
         throw AForm::GradeTooLowException();
     if (_isSigned == true)
         throw AForm::FormIsAlreadySigned();
     _isSigned = true;  
+}
+
+void AForm::execute(Bureaucrat const& executor) const
+{
+    if (!_isSigned)
+        throw AForm::FormNeedsToBeSigned();
+    if (executor.getGrade() > _gradeToExecute)
+        throw AForm::GradeTooLowException();
+    specificExecution();
 }
 
 const char* AForm::GradeTooHighException::what() const noexcept
@@ -60,6 +69,11 @@ const char* AForm::GradeTooLowException::what() const noexcept
 const char* AForm::FormIsAlreadySigned::what() const noexcept
 {
     return ("Form is already signed and can't be signed again!");
+}
+
+const char* AForm::FormNeedsToBeSigned::what() const noexcept
+{
+    return ("Form needs to be signed first to be executed after!");
 }
 
 std::ostream& operator<<(std::ostream& out, const AForm& f)

@@ -22,11 +22,6 @@ Bureaucrat::Bureaucrat(const std::string& name, int grade)
 		throw Bureaucrat::GradeTooLowException();
 }
 
-Bureaucrat::~Bureaucrat()
-{
-
-}
-
 Bureaucrat::Bureaucrat(const Bureaucrat& other)
 	: _name(other._name), _grade(other._grade)
 {
@@ -38,6 +33,11 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other)
 	if (this != &other)
 		this->_grade = other._grade;
 	return *this;
+}
+
+Bureaucrat::~Bureaucrat()
+{
+
 }
 
 const std::string& Bureaucrat::getName() const
