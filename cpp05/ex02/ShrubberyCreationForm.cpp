@@ -12,7 +12,7 @@ void ShrubberyCreationForm::specificExecution() const
     std::ofstream file(filename);
     if (!file.is_open())
         throw ShrubberyCreationForm::FileException();
-    std::string tree = R"(       ccee88oo
+    std::string tree = R"(           ccee88oo
        C8O8O8Q8PoOb o8oo
      dOB69QO8PdUOpugoO9bD
     CgggbU8OU qOp qOdoUOdcb
@@ -25,11 +25,13 @@ void ShrubberyCreationForm::specificExecution() const
      .....//||||\....
     )";
     for (int i = 0; i < 3; ++i)
+    {
         file << tree << '\n';
+    }
 	file.close();
 }
 
 const char* ShrubberyCreationForm::FileException::what() const noexcept
 {
-	return ("Can't create or open new file!");
+	return ("Couldn't create or open a new file!");
 }
