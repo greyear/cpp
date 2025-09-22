@@ -1,24 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PresidentialPardonForm.cpp                         :+:      :+:    :+:   */
+/*   ScalarConverter.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: azinchen <azinchen@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/22 15:21:40 by azinchen          #+#    #+#             */
-/*   Updated: 2025/09/22 15:21:42 by azinchen         ###   ########.fr       */
+/*   Created: 2025/09/22 21:02:57 by azinchen          #+#    #+#             */
+/*   Updated: 2025/09/22 21:02:59 by azinchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PresidentialPardonForm.hpp"
+//add secondary rule for Makefile
 
-PresidentialPardonForm::PresidentialPardonForm(const std::string& target)
-    : AForm("PresidentialPardonForm", 25, 5, target)
+class ScalarConverter
 {
-
-}
-
-void PresidentialPardonForm::specificExecution() const
-{
-    std::cout << this->getTarget() << " has been pardoned by Zaphod Beeblebrox" << std::endl;
-}
+	public:
+		static convert(const std::string& )
+};

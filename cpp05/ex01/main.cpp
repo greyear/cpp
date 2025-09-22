@@ -1,7 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: azinchen <azinchen@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/22 15:20:13 by azinchen          #+#    #+#             */
+/*   Updated: 2025/09/22 15:20:16 by azinchen         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-//add header
-
-#include <iostream>
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
 
@@ -57,10 +65,10 @@ void formWithTwoLowGrades(void)
 
 void formWithOneLowAndOneHigh(void)
 {
-    std::cout << "\n4) creating form with low grade to sign and high grade to execute" << std::endl;
+    std::cout << "\n4) creating form with high grade to sign and low grade to execute" << std::endl;
     try
     {
-        Form form("Very important form", 151, 0);
+        Form form("Very important form", 0, 151);
         std::cout << form << std::endl;
     }
     catch(const std::exception& e)

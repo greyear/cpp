@@ -1,5 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: azinchen <azinchen@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/22 15:24:41 by azinchen          #+#    #+#             */
+/*   Updated: 2025/09/22 15:24:43 by azinchen         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include <iostream>
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
 #include "ShrubberyCreationForm.hpp"

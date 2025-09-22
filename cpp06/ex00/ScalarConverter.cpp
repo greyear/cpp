@@ -1,24 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PresidentialPardonForm.cpp                         :+:      :+:    :+:   */
+/*   ScalarConverter.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: azinchen <azinchen@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/22 15:21:40 by azinchen          #+#    #+#             */
-/*   Updated: 2025/09/22 15:21:42 by azinchen         ###   ########.fr       */
+/*   Created: 2025/09/22 21:03:27 by azinchen          #+#    #+#             */
+/*   Updated: 2025/09/22 21:03:29 by azinchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PresidentialPardonForm.hpp"
 
-PresidentialPardonForm::PresidentialPardonForm(const std::string& target)
-    : AForm("PresidentialPardonForm", 25, 5, target)
-{
-
-}
-
-void PresidentialPardonForm::specificExecution() const
-{
-    std::cout << this->getTarget() << " has been pardoned by Zaphod Beeblebrox" << std::endl;
-}

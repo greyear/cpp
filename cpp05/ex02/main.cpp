@@ -1,5 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: azinchen <azinchen@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/22 15:21:23 by azinchen          #+#    #+#             */
+/*   Updated: 2025/09/22 15:21:25 by azinchen         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include <iostream>
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
 #include "ShrubberyCreationForm.hpp"
@@ -35,7 +45,7 @@ void shrubberyFileWithNoPerm(void)
 
     Bureaucrat alex("Alex", 130);
     std::cout << alex << std::endl;
-    ShrubberyCreationForm rs("restricted_trees");
+    ShrubberyCreationForm rs("restricted_trees"); //change permissions!
     std::cout << rs << std::endl;
     alex.signForm(rs);
     alex.executeForm(rs);
