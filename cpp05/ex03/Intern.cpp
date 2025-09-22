@@ -19,12 +19,15 @@ AForm* Intern::createPresidentialPardonForm(const std::string& target)
 AForm* Intern::makeForm(const std::string& form, const std::string& b)
 {
 	static const std::string formNames[3] = {"shrubbery creation", "robotomy request", "presidential pardon"};
-	static AForm* (*creators[3])(const std::string&);
+	static AForm* (*creators[3])(const std::string&) = {createShrubberyCreationForm, createRobotomyRequestForm, createPresidentialPardonForm};
 
-	for (int i; i < 3; ++i)
+	for (int i = 0; i < 3; ++i)
 	{
 		if (form == formNames[i])
+		{
+			std::cout << "Intern creates " << form << " form" << std::endl;
 			return (creators[i](b));
+		}
 	}
 	throw Intern::FormDoesntExistException();
 }
