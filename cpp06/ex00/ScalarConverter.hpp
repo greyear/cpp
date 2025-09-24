@@ -35,6 +35,16 @@ Cat* catPtr = dynamic_cast<Cat*>(animalPtr) будет нулл!
 3) const_cast <new_type> (exp);
 
 allows programmers to temporarily remove the constancy of an object and make modifications
+const int n = 5;
+const int* ptr = &n;
+int* nonConstPtr = const_cast<int*>(ptr);
+*nonConstPtr = 10;
+
+4) reinterpret_cast <new_type> (exp);
+
+int n = 10;
+int* nptr = &n;
+char* charptr = reinterpret_cast<char*>(nptr);
 
 
 typeid() operator to check the data type
