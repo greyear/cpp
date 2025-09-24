@@ -10,12 +10,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-//add secondary rule for Makefile
+#include <iostream>
+#include <string>
 
 class ScalarConverter
 {
+	private:
+		static void	printImpossible();
 	public:
-		static convert(const std::string& )
+		ScalarConverter() = delete;
+		~ScalarConverter() = delete;
+		ScalarConverter(const ScalarConverter& other) = delete;
+		ScalarConverter& operator=(const ScalarConverter& other) = delete;
+
+		static void convert(const std::string& str);
 };
 
 /*
