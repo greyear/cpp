@@ -13,11 +13,22 @@
 #include <iostream>
 #include <string>
 #include <regex>
+#include <limits>
+
 
 class ScalarConverter
 {
 	private:
+		static int	afterDot(const std::string& str);
+		static void	printChar(char c);
+		static void	printInt(int i);
+		static void	printFloat(float f);
 		static void	printImpossible();
+		static void handleChar(const std::string& str);
+		static void handleInt(const std::string& str);
+		static void handleFloat(const std::string& str);
+		static void handleDouble(const std::string& str);
+		static void handleSpecial(const std::string& str);
 	public:
 		ScalarConverter() = delete;
 		~ScalarConverter() = delete;

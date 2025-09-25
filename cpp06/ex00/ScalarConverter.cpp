@@ -35,27 +35,44 @@ double: std::regex(R"(^[-+]?\d+\.\d+$)") -
 special: std::regex(R"(^[-+]?inff?$|^nanf?$)") - 
 */
 
-void handleChar(const std::string& str)
+int ScalarConverter::afterDot(const std::string& str)
+{
+	size_t dot = str.find('.'); //check 2 dots
+	if (dot == std::string::npos)
+		return 1;
+	
+	size_t end = str.find('f', dot);
+	if (end == std::string::npos)
+		end = str.length();
+	
+	size_t digitsAfterDot = end - dot - 1;
+	std::cout << "digits after dot: " << digitsAfterDot << std::endl; //delete
+	if (digitsAfterDot == 0 || digitsAfterDot > static_cast<size_t>(std::numeric_limits<int>::max()))
+		return 1;
+	return static_cast<int>(digitsAfterDot);
+}
+
+void ScalarConverter::handleChar(const std::string& str)
 {
 
 }
 
-void handleInt(const std::string& str)
+void ScalarConverter::handleInt(const std::string& str)
 {
 
 }
 
-void handleFloat(const std::string& str)
+void ScalarConverter::handleFloat(const std::string& str)
 {
 
 }
 
-void handleDouble(const std::string& str)
+void ScalarConverter::handleDouble(const std::string& str)
 {
 
 }
 
-void handleSpecial(const std::string& str)
+void ScalarConverter::handleSpecial(const std::string& str)
 {
 	std::cout << "char: impossible" << std::endl;
 	std::cout << "int: impossible" << std::endl;
@@ -74,6 +91,24 @@ void handleSpecial(const std::string& str)
 		std::cout << "float: nanf" << std::endl;
 		std::cout << "double: nan" << std::endl;
 	}
+}
+
+void ScalarConverter::printChar(char c)
+{
+	if (std::isprint(static_cast<unsigned char>(c)))
+		std::cout << "char: " << c << std::endl;
+	else
+		std::cout << "char: Non displayable" << std::endl;
+}
+
+void ScalarConverter::printInt(int i)
+{
+	std::cout << "int: " << i << std::endl;
+}
+
+void ScalarConverter::printFloat(float f)
+{
+
 }
 
 void ScalarConverter::printImpossible()
