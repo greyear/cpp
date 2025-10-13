@@ -26,13 +26,8 @@ $ end of the line
 ? means 0 or 1 time
 | means OR
 d+ means 1 or more digits
+d* means 0 or more digits
 R"" raw string literal (not to have 2 \\)
-
-char: std::regex(R"(^[\x20-\x7E]$)") - from space to tilde, only 1 symbol
-int: std::regex(R"(^[-+]?\d+$)") - 
-float: std::regex(R"(^[-+]?\d+\.\d+f$)") - 
-double: std::regex(R"(^[-+]?\d+\.\d+$)") -
-special: std::regex(R"(^[-+]?inff?$|^nanf?$)") - 
 */
 
 int ScalarConverter::afterDot(const std::string& str)
@@ -54,22 +49,75 @@ int ScalarConverter::afterDot(const std::string& str)
 
 void ScalarConverter::handleChar(const std::string& str)
 {
-
+	char c = str[0];
+	printChar(c);
+	printInt(static_cast<int>(c));
+	printFloat(static_cast<float>(c));
+	printDouble(static_cast<double>(c));
 }
 
 void ScalarConverter::handleInt(const std::string& str)
 {
+	long long temp = std::stoll(str);
 
+	if (temp >= -128 && temp <= 127)
+		printChar(static_cast<char>(temp));
+	else
+		std::cout << "char: impossible" << std::endl;
+
+	if (temp >= std::numeric_limits<int>::min() && temp <= std::numeric_limits<int>::max())
+		printInt(static_cast<int>(temp));
+	else
+		std::cout << "int: impossible" << std::endl;
+	
+	printFloat(static_cast<float>(temp));
+	printDouble(static_cast<double>(temp));
 }
 
 void ScalarConverter::handleFloat(const std::string& str)
 {
+	float f = std::stof(str);
 
+	if (f >= -128 && f <= 127)
+		printChar(static_cast<char>(f));
+	else
+		std::cout << "char: impossible" << std::endl;
+
+	if (f >= std::numeric_limits<int>::min() && f <= std::numeric_limits<int>::max())
+		printInt(static_cast<int>(f));
+	else
+		std::cout << "int: impossible" << std::endl;
+	
+	printFloat(f);
+
+	//lowest, but not MIN (as MIN is a positive number!)
+	if (f >= std::numeric_limits<double>::lowest() && f <= std::numeric_limits<double>::max())
+		printDouble(static_cast<double>(f));
+	else
+		std::cout << "double: impossible" << std::endl;
 }
 
 void ScalarConverter::handleDouble(const std::string& str)
 {
+	double d = std::stod(str);
 
+	if (d >= -128 && d <= 127)
+		printChar(static_cast<char>(d));
+	else
+		std::cout << "char: impossible" << std::endl;
+
+	if (d >= std::numeric_limits<int>::min() && d <= std::numeric_limits<int>::max())
+		printInt(static_cast<int>(d));
+	else
+		std::cout << "int: impossible" << std::endl;
+	
+	//lowest, but not MIN (as MIN is a positive number!)
+	if (d >= std::numeric_limits<float>::lowest() && d <= std::numeric_limits<float>::max())
+		printFloat(static_cast<float>(d));
+	else
+		std::cout << "float: impossible" << std::endl;
+
+	printDouble(d);
 }
 
 void ScalarConverter::handleSpecial(const std::string& str)
@@ -108,12 +156,26 @@ void ScalarConverter::printInt(int i)
 
 void ScalarConverter::printFloat(float f)
 {
-
+	if (f == std::numeric_limits<float>::infinity())
+		std::cout << "float: +inff" << std::endl;
+	else if (f == -std::numeric_limits<float>::infinity())
+		std::cout << "float: -inff" << std::endl;
+	else if (std::isnan(f))
+		std::cout << "float: nan" << std::endl;
+	else
+		std::cout << std::fixed << std::setprecision(1) << "float: " << f << "f" << std::endl;
 }
 
 void ScalarConverter::printDouble(double d)
 {
-
+	if (d == std::numeric_limits<double>::infinity())
+		std::cout << "double: +inf" << std::endl;
+	else if (d == -std::numeric_limits<double>::infinity())
+		std::cout << "double: -inf" << std::endl;
+	else if (std::isnan(d))
+		std::cout << "double: nan" << std::endl;
+	else
+		std::cout << std::fixed << std::setprecision(1) << "double: " << d << std::endl;
 }
 
 void ScalarConverter::printImpossible()
@@ -146,13 +208,17 @@ void ScalarConverter::convert(const std::string& str)
 					return ;
 				}
 			}
-			catch(const std::exception& e)
+			catch (const std::exception& e)
 			{
-				std::cerr << e.what() << '\n'; //?
+				std::cerr << "Error: " << e.what() << std::endl; //?
 				printImpossible();
 				return ;
 			}
-			
+			catch (...)
+			{
+				printImpossible();
+				return ;
+			}
 		}
 	}
 	printImpossible();

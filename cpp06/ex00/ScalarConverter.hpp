@@ -11,8 +11,10 @@
 /* ************************************************************************** */
 
 #include <iostream>
+#include <iomanip>
 #include <string>
 #include <regex>
+#include <cmath>
 #include <limits>
 #include <functional>
 
