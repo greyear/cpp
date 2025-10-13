@@ -14,9 +14,9 @@
 
 struct Handler
 {
-    std::string type;
-    std::regex pattern;
-    void (*handlerFunction)(const std::string&);
+	const char*	type;
+	std::regex	pattern;
+	std::function<void(const std::string&)> handlerFunction;
 };
 
 /*
@@ -111,6 +111,11 @@ void ScalarConverter::printFloat(float f)
 
 }
 
+void ScalarConverter::printDouble(double d)
+{
+
+}
+
 void ScalarConverter::printImpossible()
 {
 	std::cout << "char: impossible" << std::endl;
@@ -125,9 +130,39 @@ void ScalarConverter::convert(const std::string& str)
 	{
 		{"char", std::regex(R"(^[\x20-\x7E]$)"), handleChar},
 		{"int", std::regex(R"(^[-+]?\d+$)"), handleInt}, 
-		{"float", std::regex(R"(^[-+]?\d+\.\d+f$)"), handleFloat}, 
-		{"double", std::regex(R"(^[-+]?\d+\.\d+$)"), handleDouble},
-		{"special", std::regex(R"(^[-+]?inff?$|^nanf?$)"), handleSpecial}
+		{"float", std::regex(R"(^[-+]?((\d+\.\d*)|(\d*\.\d+)|\d+)f$)"), handleFloat}, 
+		{"double", std::regex(R"(^[-+]?((\d+\.\d*)|(\d*\.\d+))$)"), handleDouble},
+		{"special", std::regex(R"(^([-+]?(inf|nan)f?$)"), handleSpecial}
+	};
+	
+	for (const Handler& handler : handlers)
+	{
+		if (std::regex_match(str, handler.pattern))
+		{
+			try
+			{
+				{
+					handler.handlerFunction(str);
+					return ;
+				}
+			}
+			catch(const std::exception& e)
+			{
+				std::cerr << e.what() << '\n'; //?
+				printImpossible();
+				return ;
+			}
+			
+		}
 	}
-	...
+	printImpossible();
 }
+
+/*
+1) Лямбды (Lambdas:
+функции, которые можно создавать прямо в коде. 
+могут захватывать переменные из окружения.
+[capture](parameters) { body }
+
+
+*/

@@ -14,6 +14,7 @@
 #include <string>
 #include <regex>
 #include <limits>
+#include <functional>
 
 
 class ScalarConverter
@@ -23,6 +24,7 @@ class ScalarConverter
 		static void	printChar(char c);
 		static void	printInt(int i);
 		static void	printFloat(float f);
+		static void	printDouble(double d);
 		static void	printImpossible();
 		static void handleChar(const std::string& str);
 		static void handleInt(const std::string& str);
