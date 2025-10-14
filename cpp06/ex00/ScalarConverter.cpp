@@ -41,9 +41,10 @@ int ScalarConverter::afterDot(const std::string& str)
 		end = str.length();
 	
 	size_t digitsAfterDot = end - dot - 1;
-	std::cout << "digits after dot: " << digitsAfterDot << std::endl; //delete
-	if (digitsAfterDot == 0 || digitsAfterDot > static_cast<size_t>(std::numeric_limits<int>::max()))
+	if (digitsAfterDot == 0)
 		return 1;
+	else if (digitsAfterDot > MAX_PRECISION)
+		digitsAfterDot = MAX_PRECISION;
 	return static_cast<int>(digitsAfterDot);
 }
 
@@ -83,18 +84,14 @@ void ScalarConverter::handleFloat(const std::string& str)
 	else
 		std::cout << "char: impossible" << std::endl;
 
-	if (f >= std::numeric_limits<int>::min() && f <= std::numeric_limits<int>::max())
+	double d = static_cast<double>(f);
+	if (d >= std::numeric_limits<int>::min() && d <= std::numeric_limits<int>::max())
 		printInt(static_cast<int>(f));
 	else
 		std::cout << "int: impossible" << std::endl;
 	
 	printFloat(f);
-
-	//lowest, but not MIN (as MIN is a positive number!)
-	if (f >= std::numeric_limits<double>::lowest() && f <= std::numeric_limits<double>::max())
-		printDouble(static_cast<double>(f));
-	else
-		std::cout << "double: impossible" << std::endl;
+	printDouble(d);
 }
 
 void ScalarConverter::handleDouble(const std::string& str)
@@ -194,9 +191,8 @@ void ScalarConverter::convert(const std::string& str)
 		{"int", std::regex(R"(^[-+]?\d+$)"), handleInt}, 
 		{"float", std::regex(R"(^[-+]?((\d+\.\d*)|(\d*\.\d+)|\d+)f$)"), handleFloat}, 
 		{"double", std::regex(R"(^[-+]?((\d+\.\d*)|(\d*\.\d+))$)"), handleDouble},
-		{"special", std::regex(R"(^([-+]?(inf|nan)f?$)"), handleSpecial}
+		{"special", std::regex(R"(^[-+]inff$|^[-+]inf$|^nanf$|^nan$)"), handleSpecial}
 	};
-	
 	for (const Handler& handler : handlers)
 	{
 		if (std::regex_match(str, handler.pattern))
@@ -204,6 +200,8 @@ void ScalarConverter::convert(const std::string& str)
 			try
 			{
 				{
+					int digitsAfter = afterDot(str);
+					std::cout << "digits after dot: " << digitsAfter << std::endl; //delete
 					handler.handlerFunction(str);
 					return ;
 				}
@@ -223,12 +221,3 @@ void ScalarConverter::convert(const std::string& str)
 	}
 	printImpossible();
 }
-
-/*
-1) Лямбды (Lambdas:
-функции, которые можно создавать прямо в коде. 
-могут захватывать переменные из окружения.
-[capture](parameters) { body }
-
-
-*/

@@ -18,6 +18,7 @@
 #include <limits>
 #include <functional>
 
+#define MAX_PRECISION 10
 
 class ScalarConverter
 {
