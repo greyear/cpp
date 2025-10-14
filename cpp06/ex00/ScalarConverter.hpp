@@ -26,14 +26,14 @@ class ScalarConverter
 		static int	afterDot(const std::string& str);
 		static void	printChar(char c);
 		static void	printInt(int i);
-		static void	printFloat(float f);
-		static void	printDouble(double d);
+		static void	printFloat(float f, int afterDot);
+		static void	printDouble(double d, int afterDot);
 		static void	printImpossible();
-		static void handleChar(const std::string& str);
-		static void handleInt(const std::string& str);
-		static void handleFloat(const std::string& str);
-		static void handleDouble(const std::string& str);
-		static void handleSpecial(const std::string& str);
+		static void handleChar(const std::string& str, int afterDot);
+		static void handleInt(const std::string& str, int afterDot);
+		static void handleFloat(const std::string& str, int afterDot);
+		static void handleDouble(const std::string& str, int afterDot);
+		static void handleSpecial(const std::string& str, int afterDot);
 	public:
 		ScalarConverter() = delete;
 		~ScalarConverter() = delete;

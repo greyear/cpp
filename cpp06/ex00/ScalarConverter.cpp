@@ -16,7 +16,7 @@ struct Handler
 {
 	const char*	type;
 	std::regex	pattern;
-	std::function<void(const std::string&)> handlerFunction;
+	std::function<void(const std::string&, int)> handlerFunction;
 };
 
 /*
@@ -48,16 +48,26 @@ int ScalarConverter::afterDot(const std::string& str)
 	return static_cast<int>(digitsAfterDot);
 }
 
-void ScalarConverter::handleChar(const std::string& str)
+void ScalarConverter::handleChar(const std::string& str, int afterDot)
 {
-	char c = str[0];
+	char c;
+	if (str.length() == 1 && !std::isdigit(str[0]))
+		c = str[0];
+	else if (str.length() == 3 && str[0] == '\'' && str[2] == '\'')
+		c = str[1];
+	else
+	{
+		printImpossible();
+		return ;
+	}
+
 	printChar(c);
 	printInt(static_cast<int>(c));
-	printFloat(static_cast<float>(c));
-	printDouble(static_cast<double>(c));
+	printFloat(static_cast<float>(c), afterDot);
+	printDouble(static_cast<double>(c), afterDot);
 }
 
-void ScalarConverter::handleInt(const std::string& str)
+void ScalarConverter::handleInt(const std::string& str, int afterDot)
 {
 	long long temp = std::stoll(str);
 
@@ -70,12 +80,12 @@ void ScalarConverter::handleInt(const std::string& str)
 		printInt(static_cast<int>(temp));
 	else
 		std::cout << "int: impossible" << std::endl;
-	
-	printFloat(static_cast<float>(temp));
-	printDouble(static_cast<double>(temp));
+
+	printFloat(static_cast<float>(temp), afterDot);
+	printDouble(static_cast<double>(temp), afterDot);
 }
 
-void ScalarConverter::handleFloat(const std::string& str)
+void ScalarConverter::handleFloat(const std::string& str, int afterDot)
 {
 	float f = std::stof(str);
 
@@ -89,12 +99,12 @@ void ScalarConverter::handleFloat(const std::string& str)
 		printInt(static_cast<int>(f));
 	else
 		std::cout << "int: impossible" << std::endl;
-	
-	printFloat(f);
-	printDouble(d);
+
+	printFloat(f, afterDot);
+	printDouble(d, afterDot);
 }
 
-void ScalarConverter::handleDouble(const std::string& str)
+void ScalarConverter::handleDouble(const std::string& str, int afterDot)
 {
 	double d = std::stod(str);
 
@@ -110,15 +120,16 @@ void ScalarConverter::handleDouble(const std::string& str)
 	
 	//lowest, but not MIN (as MIN is a positive number!)
 	if (d >= std::numeric_limits<float>::lowest() && d <= std::numeric_limits<float>::max())
-		printFloat(static_cast<float>(d));
+		printFloat(static_cast<float>(d), afterDot);
 	else
 		std::cout << "float: impossible" << std::endl;
 
-	printDouble(d);
+	printDouble(d, afterDot);
 }
 
-void ScalarConverter::handleSpecial(const std::string& str)
+void ScalarConverter::handleSpecial(const std::string& str, int afterDot)
 {
+	(void)afterDot;
 	std::cout << "char: impossible" << std::endl;
 	std::cout << "int: impossible" << std::endl;
 	if (str == "inf" || str == "inff" || str == "+inf" || str == "+inff")
@@ -151,7 +162,7 @@ void ScalarConverter::printInt(int i)
 	std::cout << "int: " << i << std::endl;
 }
 
-void ScalarConverter::printFloat(float f)
+void ScalarConverter::printFloat(float f, int afterDot)
 {
 	if (f == std::numeric_limits<float>::infinity())
 		std::cout << "float: +inff" << std::endl;
@@ -160,10 +171,10 @@ void ScalarConverter::printFloat(float f)
 	else if (std::isnan(f))
 		std::cout << "float: nan" << std::endl;
 	else
-		std::cout << std::fixed << std::setprecision(1) << "float: " << f << "f" << std::endl;
+		std::cout << std::fixed << std::setprecision(afterDot) << "float: " << f << "f" << std::endl;
 }
 
-void ScalarConverter::printDouble(double d)
+void ScalarConverter::printDouble(double d, int afterDot)
 {
 	if (d == std::numeric_limits<double>::infinity())
 		std::cout << "double: +inf" << std::endl;
@@ -172,7 +183,7 @@ void ScalarConverter::printDouble(double d)
 	else if (std::isnan(d))
 		std::cout << "double: nan" << std::endl;
 	else
-		std::cout << std::fixed << std::setprecision(1) << "double: " << d << std::endl;
+		std::cout << std::fixed << std::setprecision(afterDot) << "double: " << d << std::endl;
 }
 
 void ScalarConverter::printImpossible()
@@ -187,8 +198,8 @@ void ScalarConverter::convert(const std::string& str)
 {
 	Handler handlers[] = 
 	{
-		{"char", std::regex(R"(^[\x20-\x7E]$)"), handleChar},
-		{"int", std::regex(R"(^[-+]?\d+$)"), handleInt}, 
+		{"char", std::regex(R"(^[^\d\x00-\x1F\x7F]$)"), handleChar},
+		{"int", std::regex(R"(^[-+]?\d+$)"), handleInt},
 		{"float", std::regex(R"(^[-+]?((\d+\.\d*)|(\d*\.\d+)|\d+)f$)"), handleFloat}, 
 		{"double", std::regex(R"(^[-+]?((\d+\.\d*)|(\d*\.\d+))$)"), handleDouble},
 		{"special", std::regex(R"(^[-+]inff$|^[-+]inf$|^nanf$|^nan$)"), handleSpecial}
@@ -201,8 +212,7 @@ void ScalarConverter::convert(const std::string& str)
 			{
 				{
 					int digitsAfter = afterDot(str);
-					std::cout << "digits after dot: " << digitsAfter << std::endl; //delete
-					handler.handlerFunction(str);
+					handler.handlerFunction(str, digitsAfter);
 					return ;
 				}
 			}
