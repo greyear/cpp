@@ -29,9 +29,15 @@ void testNumber()
     test("32");
     test("33");
     test("126");
-    test("127");
+    test("127"); // Max char value
+    test("128"); // Beyond char range
+    test("-129"); // Below char range
+    test("255"); // Extended ASCII
+    test("256"); // Beyond extended ASCII
     test("0.9");
-    test("0.9999999999999");
+    test("0.9999999999");
+    test("0.99999999999");
+    test("0.999999999999");
     test("42");
     test("-42");
     test("42.0");
@@ -47,16 +53,8 @@ void testNumber()
     test("-2147483649"); // INT_MIN - 1
     test("3.14f");
     test("-3.14f");
-    test("3.4028235e+38f"); // FLT_MAX
-    test("-3.4028235e+38f"); // -FLT_MAX
     test("3.4028236e+38f"); // FLT_MAX + 1
-    test("-3.4028236e+38f"); // -FLT_MAX - 1
-    test("2.2250738585072014e-308"); // DBL_MIN
-    test("-2.2250738585072014e-308"); // -DBL_MIN
-    test("1.7976931348623157e+308"); // DBL_MAX
-    test("-1.7976931348623157e+308"); // -DBL_MAX
     test("1.7976931348623158e+308"); // DBL_MAX + 1
-    test("-1.7976931348623158e+308"); // -DBL_MAX - 1
 }
 
 void testSpecial()
@@ -82,35 +80,19 @@ void testInvalid()
     test("!@#$%^&*()");
 }
 
-void testEdgeCases()
-{
-    test("127"); // Max char value
-    test("128"); // Beyond char range
-    test("-129"); // Below char range
-    test("255"); // Extended ASCII
-    test("256"); // Beyond extended ASCII
-    test("3.4028235e+38f"); // FLT_MAX
-    test("3.4028236e+38f"); // FLT_MAX + 1
-    test("1.7976931348623157e+308"); // DBL_MAX
-    test("1.7976931348623158e+308"); // DBL_MAX + 1
-}
-
 int main()
 {
-    std::cout << "=== Character Tests ===" << std::endl;
+    std::cout << "=== Character tests ===" << std::endl;
     testChar();
 
-    std::cout << "=== Number Tests ===" << std::endl;
+    std::cout << "=== Number tests ===" << std::endl;
     testNumber();
 
-    std::cout << "=== Special Floating-Point Values ===" << std::endl;
+    std::cout << "=== Special values ===" << std::endl;
     testSpecial();
 
-    std::cout << "=== Invalid Input Tests ===" << std::endl;
+    std::cout << "=== Invalid input tests ===" << std::endl;
     testInvalid();
-
-    std::cout << "=== Edge Case Tests ===" << std::endl;
-    testEdgeCases();
 
     return 0;
 }

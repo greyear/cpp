@@ -19,17 +19,6 @@ struct Handler
 	std::function<void(const std::string&, int)> handlerFunction;
 };
 
-/*
-regex:
-^ means start of the line
-$ end of the line
-? means 0 or 1 time
-| means OR
-d+ means 1 or more digits
-d* means 0 or more digits
-R"" raw string literal (not to have 2 \\)
-*/
-
 int ScalarConverter::afterDot(const std::string& str)
 {
 	size_t dot = str.find('.'); //check 2 dots
@@ -215,12 +204,6 @@ void ScalarConverter::convert(const std::string& str)
 					handler.handlerFunction(str, digitsAfter);
 					return ;
 				}
-			}
-			catch (const std::exception& e)
-			{
-				std::cerr << "Error: " << e.what() << std::endl; //?
-				printImpossible();
-				return ;
 			}
 			catch (...)
 			{
