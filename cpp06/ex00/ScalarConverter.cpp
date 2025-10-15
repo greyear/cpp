@@ -21,7 +21,7 @@ struct Handler
 
 int ScalarConverter::afterDot(const std::string& str)
 {
-	size_t dot = str.find('.'); //check 2 dots
+	size_t dot = str.find('.');
 	if (dot == std::string::npos)
 		return 1;
 	
@@ -106,8 +106,7 @@ void ScalarConverter::handleDouble(const std::string& str, int afterDot)
 		printInt(static_cast<int>(d));
 	else
 		std::cout << "int: impossible" << std::endl;
-	
-	//lowest, but not MIN (as MIN is a positive number!)
+
 	if (d >= std::numeric_limits<float>::lowest() && d <= std::numeric_limits<float>::max())
 		printFloat(static_cast<float>(d), afterDot);
 	else
