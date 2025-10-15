@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Data.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: azinchen <azinchen@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/14 16:00:04 by azinchen          #+#    #+#             */
-/*   Updated: 2025/10/14 16:00:06 by azinchen         ###   ########.fr       */
+/*   Created: 2025/10/15 13:37:59 by azinchen          #+#    #+#             */
+/*   Updated: 2025/10/15 13:38:01 by azinchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScalarConverter.hpp"
+#pragma once
+#include <string>
 
-int main(int argc, char *argv[])
+struct Data
 {
-	if (argc == 2)
-		ScalarConverter::convert(argv[1]);
-	else
-	{
-		std::cout << "Usage: ./convert arg" << std::endl;
-		return (1);
-	}
-	return (0);
-}
+	std::string	name;
+	int			id;
+	double		value;
+};
