@@ -12,6 +12,7 @@
 
 #pragma once
 #include <concepts>
+#include <utility>
 
 template <typename T>
 void swap(T& x, T& y)
@@ -21,14 +22,14 @@ void swap(T& x, T& y)
 	y = z;
 }
 
-template <typename T>
-const T& min(const T& x, const T& y)
+template <std::totally_ordered T>
+constexpr const T& min(const T& x, const T& y)
 {
 	return (x < y) ? x : y;
 }
 
-template <typename T>
-const T& max(const T& x, const T& y)
+template <std::totally_ordered T>
+constexpr const T& max(const T& x, const T& y)
 {
 	return (x > y) ? x : y;
 }
