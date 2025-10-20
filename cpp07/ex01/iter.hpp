@@ -14,8 +14,6 @@
 #include <concepts>
 #include <cstddef>
 
-//requires std::invocable<Func, T&> значит "Можно ли вызвать Func с аргументом типа T&?"
-
 template<typename T, typename Func>
 requires std::invocable<Func, T&>
 void iter(T* arr, std::size_t length, Func function)
