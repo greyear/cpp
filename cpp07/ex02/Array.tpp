@@ -1,6 +1,6 @@
 
 template<typename T>
-Array<T>::Array(): _array(nullptr), _size(0)
+Array<T>::Array(): _size(0), _array(nullptr)
 {
 
 }
