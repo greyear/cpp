@@ -1,2 +1,7 @@
 
-#include "Array.hpp" //only! without tpp
+#include "Array.hpp"
+
+int main(void)
+{
+    
+}
