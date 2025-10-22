@@ -35,7 +35,7 @@ void printingWithCommas(T& i)
 	std::cout << i << ", ";
 }
 
-int main( void )
+int main(void)
 {
 	std::cout << std::endl;
 	std::cout << "Test case 1: int array x2" << std::endl;
