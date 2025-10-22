@@ -16,7 +16,8 @@
 template <typename T>
 void swap(T& x, T& y)
 {
-	T z = x;
+	T z;
+	z = x;
 	x = y;
 	y = z;
 }
