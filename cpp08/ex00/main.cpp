@@ -41,12 +41,12 @@ void testArray(void)
 		std::cout << "\nTest case 2: array" << std::endl;
 		std::array<const int, 5> arr = {0, -9, -2, 1, 10000};
 		std::cout << "Array elements: " << std::endl;
-		std::array<const int, 5>::const_iterator it;
+		std::array<const int, 5>::iterator it;
 		for (it = arr.begin(); it != arr.end(); ++it)
 			std::cout << *it << " ";
 		std::cout << "\nTrying to find element -2: ";
 		const int* correctPointer = &arr[2];
-		std::array<const int, 5>::const_iterator res = easyfind(arr, -2);
+		std::array<const int, 5>::iterator res = easyfind(arr, -2);
 		std::cout << *res << std::endl;
 		if (&(*res) == correctPointer)
    			std::cout << "Correct element found (addresses match)" << std::endl;
