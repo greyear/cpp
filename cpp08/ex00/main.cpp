@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: azinchen <azinchen@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/28 13:22:24 by azinchen          #+#    #+#             */
+/*   Updated: 2025/10/28 13:22:26 by azinchen         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "easyfind.hpp"
 #include <vector>
@@ -21,9 +32,9 @@ void testVector(void)
 		std::vector<int>::iterator res = easyfind(vec, 3);
 		std::cout << *res << std::endl;
 		if (&(*res) == correctPointer)
-   			std::cout << "Correct element found (addresses match)" << std::endl;
+			std::cout << "Correct element found (addresses match)" << std::endl;
 		else
-    		std::cout << "Wrong element found" << std::endl;
+			std::cout << "Wrong element found" << std::endl;
 
 		std::cout << "Trying to find element 10: ";
 		std::cout << *easyfind(vec, 10) << std::endl;
@@ -49,9 +60,9 @@ void testArray(void)
 		std::array<const int, 5>::iterator res = easyfind(arr, -2);
 		std::cout << *res << std::endl;
 		if (&(*res) == correctPointer)
-   			std::cout << "Correct element found (addresses match)" << std::endl;
+			std::cout << "Correct element found (addresses match)" << std::endl;
 		else
-    		std::cout << "Wrong element found" << std::endl;
+			std::cout << "Wrong element found" << std::endl;
 
 		std::cout << "Trying to find element 10: ";
 		std::cout << *easyfind(arr, 10) << std::endl;
@@ -79,9 +90,9 @@ void testList(void)
 		std::list<int>::const_iterator res = easyfind(ls, 18);
 		std::cout << *res << std::endl;
 		if (&(*res) == correctPointer)
-   			std::cout << "Correct element found (addresses match)" << std::endl;
+			std::cout << "Correct element found (addresses match)" << std::endl;
 		else
-    		std::cout << "Wrong element found" << std::endl;
+			std::cout << "Wrong element found" << std::endl;
 
 		std::cout << "Trying to find element 10: ";
 		std::cout << *easyfind(ls, 10) << std::endl;
@@ -107,9 +118,9 @@ void testDeque(void)
 		std::deque<int>::iterator res = easyfind(dq, 12);
 		std::cout << *res << std::endl;
 		if (&(*res) == correctPointer)
-   			std::cout << "Correct element found (addresses match)" << std::endl;
+			std::cout << "Correct element found (addresses match)" << std::endl;
 		else
-    		std::cout << "Wrong element found" << std::endl;
+			std::cout << "Wrong element found" << std::endl;
 
 		std::cout << "Trying to find element 10: ";
 		std::cout << *easyfind(dq, 10) << std::endl;
