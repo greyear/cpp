@@ -24,6 +24,23 @@ void Span::addNumber(int newNum)
 	_num.push_back(newNum);
 }
 
+void Span::addNumber(const std::vector<int>& v)
+{
+	if (_N - _num.size() < v.size())
+		throw std::length_error("Max amount of numbers will be exceeded, cannot add these numbers");
+	_num.insert(_num.end(), v.begin(), v.end());
+}
+
+void Span::addNumber(std::vector<int>::const_iterator b, std::vector<int>::const_iterator e)
+{
+	if (e < b)
+		throw std::invalid_argument("Invalid iterator range: end before begin");
+	unsigned int vSize = static_cast<unsigned int>(e - b);
+	if (_N - _num.size() < vSize)
+		throw std::length_error("Max amount of numbers will be exceeded, cannot add these numbers");
+	_num.insert(_num.end(), b, e);
+}
+
 unsigned int Span::shortestSpan() const
 {
 	if (_num.size() <= 1)

@@ -12,19 +12,22 @@
 
 #include "Span.hpp"
 #include <iostream>
+#include <ctime>
+#include <cstdlib>
 
 void testCorrect(void)
 {
 	try
 	{
 		std::cout << "Test case 1: happy path" << std::endl;
-		Span span = Span(4);
-		span.addNumber(3);
-		span.addNumber(100000);
-		span.addNumber(-800);
-		span.addNumber(2);
-		std::cout << "shortest span is: " << span.shortestSpan() << std::endl;
-		std::cout << "longest span is: " << span.longestSpan() << std::endl;
+		Span sp = Span(5);
+		sp.addNumber(6);
+		sp.addNumber(3);
+		sp.addNumber(17);
+		sp.addNumber(9);
+		sp.addNumber(11);
+		std::cout << sp.shortestSpan() << std::endl;
+		std::cout << sp.longestSpan() << std::endl;
 	}
 	catch(const std::exception& e)
 	{
@@ -149,8 +152,52 @@ void testIntLimits(void)
 	}
 }
 
+void testRandom(void)
+{
+	try
+	{
+		std::cout << "\nTest case 9: 1000 random numbers" << std::endl;
+		Span sp = Span(1000);
+		std::vector<int> v(1000);
+		std::generate(v.begin(), v.end(), rand);
+		sp.addNumber(v);
+		std::cout << sp.shortestSpan() << std::endl;
+		std::cout << sp.longestSpan() << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << "Error: " << e.what() << std::endl;
+	}
+}
+
+void testRange(void)
+{
+	try
+	{
+		std::cout << "\nTest case 10: 10000 numbers in range" << std::endl;
+		Span sp = Span(10000);
+		std::vector<int> v(10000);
+
+		int min = -1000000;
+		int max = 1000000;
+		std::generate(v.begin(), v.end(), [min, max]()
+		{
+			return min + rand() % (max - min + 1);
+		});
+		sp.addNumber(v.begin(), v.end());
+		std::cout << sp.shortestSpan() << std::endl;
+		std::cout << sp.longestSpan() << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << "Error: " << e.what() << std::endl;
+	}
+}
+
 int main(void)
 {
+	std::srand(std::time(nullptr));
+
 	testCorrect();
 	testAddExtra();
 	testZeroElementsContainer();
@@ -159,6 +206,8 @@ int main(void)
 	testNotFilledInFully();
 	testAllSameValues();
 	testIntLimits();
+	testRandom();
+	testRange();
 
 	return (0);
 }

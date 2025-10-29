@@ -16,6 +16,7 @@
 #include <stdexcept>
 #include <limits>
 #include <algorithm>
+#include <vector>
 
 class Span
 {
@@ -30,6 +31,8 @@ class Span
 		~Span() = default;
 
 		void addNumber(int newNum);
+		void addNumber(const std::vector<int>& v);
+		void addNumber(std::vector<int>::const_iterator b, std::vector<int>::const_iterator e);
 		unsigned int shortestSpan() const;
 		unsigned int longestSpan() const;
 };
