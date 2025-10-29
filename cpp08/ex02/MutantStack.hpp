@@ -21,8 +21,7 @@ class MutantStack : public std::stack<T, Container>
 	public:
 
 		using std::stack<T, Container>::stack;
-		//Container is type of the container used (by default deque)
-		//typename Container::iterator is TYPE of iterator for that container type
+
 		using iterator = typename Container::iterator;
 		using const_iterator = typename Container::const_iterator;
 		using reverse_iterator = typename Container::reverse_iterator;
