@@ -5,14 +5,21 @@
 #include <string>
 #include <fstream>
 #include <regex>
+#include <ctime>
+#include <iomanip>
+#include <sstream>
+#include <iostream>
 
 class BitcoinExchange
 {
     private:
         std::map<std::string, double> _dateRate;
 
+        bool isLeapYear(int y);
+        bool isExistingDate(int y, int m, int d);
+        std::string getToday();
         void fillDateRateMap();
-        bool isValidDate(const std::string& date);
+        void handleValuesInput(char *filePath); //static??
     public:
         BitcoinExchange() = default;
         BitcoinExchange(const BitcoinExchange& other) = delete;
