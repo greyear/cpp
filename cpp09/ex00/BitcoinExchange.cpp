@@ -86,8 +86,11 @@ double BitcoinExchange::getPrice(const std::string& date) const
 	std::map<std::string, double>::const_iterator it = _datePrices.find(date);
 	if (it != _datePrices.end())
 		return it->second;
-	//add lower_bound logic
-	return 0; //del
+	it = _datePrices.lower_bound(date);
+	if (it == _datePrices.begin())
+		throw std::runtime_error("There's no exchange rate in database (all dates are upper ones, but we needed the lower date!)");
+	--it;
+	return it->second;
 }
 
 void BitcoinExchange::handleValuesInput(char *filePath)
@@ -132,7 +135,9 @@ void BitcoinExchange::handleValuesInput(char *filePath)
 			std::cout << yMD << " => " << amount << " = " << mult << std::endl;			
 		}
 		else
-			throw std::runtime_error("Invalid line in input file: " + line);
+		{
+			std::cout << "Error: bad input => " << line << std::endl;
+			continue;
+		}
 	}
-
 }
