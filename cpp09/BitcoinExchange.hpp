@@ -13,12 +13,13 @@
 class BitcoinExchange
 {
     private:
-        std::map<std::string, double> _dateRate;
+        std::map<std::string, double> _datePrices;
 
         bool isLeapYear(int y);
         bool isExistingDate(int y, int m, int d);
         std::string getToday();
         void fillDateRateMap();
+		double getPrice(const std::string& date) const;
         void handleValuesInput(char *filePath); //static??
     public:
         BitcoinExchange() = default;
