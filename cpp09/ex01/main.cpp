@@ -5,24 +5,24 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: azinchen <azinchen@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/05 15:23:28 by azinchen          #+#    #+#             */
-/*   Updated: 2025/11/05 15:23:30 by azinchen         ###   ########.fr       */
+/*   Created: 2025/11/05 15:40:05 by azinchen          #+#    #+#             */
+/*   Updated: 2025/11/05 15:40:07 by azinchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "BitcoinExchange.hpp"
+#include "RPN.hpp"
 
 int main(int argc, char *argv[])
 {
 	if (argc != 2)
 	{
-		std::cout << "Error: could not open file." << std::endl;
+		std::cerr << "Error: program must take RPN as an argument" << std::endl;
 		return 1;
 	}
 	try
 	{
-		BitcoinExchange bit;
-		bit.exchange(argv[1]);
+		RPN rPN;
+		rPN.countRPN(argv[1]);
 	}
 	catch(const std::exception& e)
 	{

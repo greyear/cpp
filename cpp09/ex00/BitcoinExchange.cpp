@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: azinchen <azinchen@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/05 15:23:11 by azinchen          #+#    #+#             */
+/*   Updated: 2025/11/05 15:23:13 by azinchen         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
 
@@ -108,7 +119,7 @@ void BitcoinExchange::handleValuesInput(char *filePath)
 	while (std::getline(inputFile, line))
 	{
 		if (line.empty())
-            continue;
+			continue;
 		if (std::regex_match(line, match, linePattern))
 		{
 			int year = std::stoi(match[1].str());

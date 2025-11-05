@@ -1,33 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   RPN.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: azinchen <azinchen@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/05 15:23:28 by azinchen          #+#    #+#             */
-/*   Updated: 2025/11/05 15:23:30 by azinchen         ###   ########.fr       */
+/*   Created: 2025/11/05 15:40:24 by azinchen          #+#    #+#             */
+/*   Updated: 2025/11/05 15:40:28 by azinchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "BitcoinExchange.hpp"
+#pragma once
 
-int main(int argc, char *argv[])
+#include <iostream>
+#include <sstream>
+#include <stack>
+#include <stdexcept>
+
+class RPN
 {
-	if (argc != 2)
-	{
-		std::cout << "Error: could not open file." << std::endl;
-		return 1;
-	}
-	try
-	{
-		BitcoinExchange bit;
-		bit.exchange(argv[1]);
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << std::endl;
-	}
-	
-	return 0;
-}
+	private:
+		std::stack<long long> st;
+
+		bool isOperator(char c);
+		long long calculate(long long a, long long b, char c);
+	public:
+		RPN() = default;
+		RPN(const RPN& other) = delete;
+		RPN& operator=(const RPN& other) = delete;
+		~RPN() = default;
+
+		void countRPN(const std::string& arg);
+};
+
+/*
+
+
+*/
