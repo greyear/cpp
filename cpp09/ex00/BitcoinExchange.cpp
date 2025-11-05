@@ -47,12 +47,12 @@ void BitcoinExchange::fillDateRateMap()
 {
 	std::ifstream inputFile("./data.csv");
 	if (!inputFile.is_open())
-		throw std::runtime_error("Could not open data.csv file.");
+		throw std::runtime_error("Error: could not open data.csv file.");
 
 	std::string line;
 	std::getline(inputFile, line);
 	if (line != "date,exchange_rate")
-		throw std::runtime_error("Invalid data.csv file (header bad format).");
+		throw std::runtime_error("Error: invalid data.csv file (header bad format).");
 	
 	std::regex linePattern(R"(^(\d{4})-(\d{2})-(\d{2}),(\d+(?:\.\d+)?)$)");
 	std::smatch match;
@@ -64,21 +64,20 @@ void BitcoinExchange::fillDateRateMap()
 			int month = std::stoi(match[2].str());
 			int day = std::stoi(match[3].str());
 			if (!isExistingDate(year, month, day))
-				throw std::runtime_error("Invalid date in data.csv: " + line);
+				throw std::runtime_error("Error: invalid date in data.csv: " + line);
 			std::string yMD = match[1].str() + "-" + match[2].str() + "-" + match[3].str();
 			double rate = std::stod(match[4].str());
 			if (_datePrices.find(yMD) != _datePrices.end())
-				throw std::runtime_error("Duplicate dates in data.csv");
+				throw std::runtime_error("Error: duplicate dates in data.csv");
 			_datePrices[yMD] = rate;
 		}
 		else
-			throw std::runtime_error("Invalid line in data.csv file: " + line);
+			throw std::runtime_error("Error: invalid line in data.csv file: " + line);
 	}
-	inputFile.close();
 	if (_datePrices.empty())
-		throw std::runtime_error("There's no valid data in data.csv file");
+		throw std::runtime_error("Error: data.csv is empty or contains no valid entries");
 	if (_datePrices.rbegin()->first > getToday())
-		throw std::runtime_error("There's a future date in data.csv file");
+		throw std::runtime_error("Error: there's a future date in data.csv file");
 }
 
 double BitcoinExchange::getPrice(const std::string& date) const
@@ -88,7 +87,7 @@ double BitcoinExchange::getPrice(const std::string& date) const
 		return it->second;
 	it = _datePrices.lower_bound(date);
 	if (it == _datePrices.begin())
-		throw std::runtime_error("There's no exchange rate in database (all dates are upper ones, but we needed the lower date!)");
+		throw std::runtime_error("Error: there's no exchange rate in database (all dates are upper ones, but we needed the lower date!)");
 	--it;
 	return it->second;
 }
@@ -97,17 +96,19 @@ void BitcoinExchange::handleValuesInput(char *filePath)
 {
 	std::ifstream inputFile(filePath);
 	if (!inputFile.is_open())
-		throw std::runtime_error("Could not open input file.");
+		throw std::runtime_error("Error: could not open input file.");
 
 	std::string line;
 	std::getline(inputFile, line);
 	if (line != "date | value")
-		throw std::runtime_error("Invalid input file (header bad format).");
+		throw std::runtime_error("Error: invalid input file (header bad format).");
 
 	std::regex linePattern(R"(^(\d{4})-(\d{2})-(\d{2}) \| ([-+]?\d+(?:\.\d+)?)$)");
 	std::smatch match;
 	while (std::getline(inputFile, line))
 	{
+		if (line.empty())
+            continue;
 		if (std::regex_match(line, match, linePattern))
 		{
 			int year = std::stoi(match[1].str());
@@ -119,6 +120,12 @@ void BitcoinExchange::handleValuesInput(char *filePath)
 				continue;
 			}
 			std::string yMD = match[1].str() + "-" + match[2].str() + "-" + match[3].str();
+			if (yMD > getToday())
+			{
+				std::cout << "Error: there's a future date in input file" << std::endl;
+				continue;
+			}
+
 			double amount = std::stod(match[4].str());
 			if (amount < 0)
 			{
