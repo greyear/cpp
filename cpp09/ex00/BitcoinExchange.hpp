@@ -40,18 +40,3 @@ class BitcoinExchange
 
 		void exchange(char *inputFile);
 };
-
-
-
-
-
-/*
-1st - we have 2 files: date+rate (double), date+value. we need to print date+value*rate
-	-map (date, rate)
-
-2nd - we need to store all figures and signs from argv (with duplicates)
-	-stack
-
-3rd - we need to store a lot of ints to sort (with duplicates)
-	-vector + deque/list
-*/
