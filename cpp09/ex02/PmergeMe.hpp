@@ -20,6 +20,9 @@
 class PmergeMe
 {
 	private:
+		std::vector<int> _vecNums;
+		std::deque<int>	_deqNums;
+
 		bool ifOnlyPositiveInts(const std::string& str);
 	public:
 		PmergeMe() = delete;
@@ -28,7 +31,7 @@ class PmergeMe
 		PmergeMe& operator=(const PmergeMe& other) = delete;
 		~PmergeMe() = default;
 
-		void sort();
+		void run();
 };
 
 /*

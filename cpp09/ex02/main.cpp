@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
 	try
 	{
 		PmergeMe pMerge(argc, argv);
-		pMerge.sort();
+		pMerge.run();
 	}
 	catch(const std::exception& e)
 	{

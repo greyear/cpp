@@ -23,7 +23,7 @@ void RPN::countRPN(const std::string& arg)
 	{
 		if (token.length() != 1)
 			throw std::runtime_error("Error: invalid token: " + token);
-		else if (isdigit(token[0]))
+		else if (isdigit(static_cast<unsigned char>(token[0])))
 			_st.push(std::stoll(token));
 		else if (isOperator(token[0]))
 		{
