@@ -16,11 +16,12 @@
 #include <sstream>
 #include <stack>
 #include <stdexcept>
+#include <limits>
 
 class RPN
 {
 	private:
-		std::stack<long long> st;
+		std::stack<long long> _st;
 
 		bool isOperator(char c);
 		long long calculate(long long a, long long b, char c);
