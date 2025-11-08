@@ -28,8 +28,6 @@ class PmergeMe
 		bool ifOnlyPositiveInts(const std::string& str);
 		void sortVector(std::vector<int>& v);
 		void sortDeque(std::deque<int>& d);
-		void printVector();
-		void printDeque();
 	public:
 		PmergeMe() = delete;
 		PmergeMe(int argc, char *argv[]);

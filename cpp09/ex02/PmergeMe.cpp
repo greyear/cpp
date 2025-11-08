@@ -11,10 +11,11 @@
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
+#include <bits/stdc++.h> //delete
 
 PmergeMe::PmergeMe(int argc, char *argv[])
 {
-	for (size_t i = 0; i < argc; ++i)
+	for (int i = 0; i < argc; ++i)
 	{
 		std::string argStr(argv[i]);
 		int argInt;
@@ -42,7 +43,8 @@ void PmergeMe::run()
 	_runTimeDeque = std::chrono::duration_cast<std::chrono::microseconds>(endTime - startTime);
 	printContainer("After:\t", _deqNums); //delete
 
-	std::cout << "Time to process a range of 5 elements with std::[..] : 0.00031 us" << 
+	std::cout << "Time to process a range of " << _vecNums.size() << " elements with std::vector : " << _runTimeVector << " us" << std::endl;
+	std::cout << "Time to process a range of " << _deqNums.size() << " elements with std::deque : " << _runTimeDeque << " us" << std::endl;
 }
 
 bool PmergeMe::ifOnlyPositiveInts(const std::string& str)
@@ -55,6 +57,21 @@ bool PmergeMe::ifOnlyPositiveInts(const std::string& str)
 			return false;
 	}
 	return true;
+}
+
+bool comp(int a, int b) //delete
+{
+    return a < b;
+}
+
+void PmergeMe::sortVector(std::vector<int>& v)
+{
+	sort(v.begin(), v.end(), comp);
+}
+
+void PmergeMe::sortDeque(std::deque<int>& d)
+{
+	sort(d.begin(), d.end(), comp);
 }
 
 

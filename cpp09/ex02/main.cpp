@@ -21,6 +21,8 @@ int main(int argc, char *argv[])
 	}
 	try
 	{
+		argc--;
+		argv++;
 		PmergeMe pMerge(argc, argv);
 		pMerge.run();
 	}
