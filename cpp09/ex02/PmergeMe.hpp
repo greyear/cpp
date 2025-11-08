@@ -22,8 +22,14 @@ class PmergeMe
 	private:
 		std::vector<int> _vecNums;
 		std::deque<int>	_deqNums;
+		std::chrono::microseconds _runTimeVector;
+		std::chrono::microseconds _runTimeDeque;
 
 		bool ifOnlyPositiveInts(const std::string& str);
+		void sortVector(std::vector<int>& v);
+		void sortDeque(std::deque<int>& d);
+		void printVector();
+		void printDeque();
 	public:
 		PmergeMe() = delete;
 		PmergeMe(int argc, char *argv[]);
@@ -34,10 +40,20 @@ class PmergeMe
 		void run();
 };
 
-/*
-positive int
-errors on stderr
-*/
+template <typename T>
+void printContainer(const std::string& phrase, const T& cont)
+{
+	std::cout << phrase;
+	bool first = true;
+	for (const auto& num : cont)
+	{
+		if (!first)
+			std::cout << " ";
+		std::cout << num;
+		first = false;
+	}
+	std::cout << std::endl;
+}
 
 
 
