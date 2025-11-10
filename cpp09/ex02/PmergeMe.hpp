@@ -39,6 +39,13 @@ class PmergeMe
 };
 
 template <typename T>
+void insertBinary(T& cont, int value)
+{
+	typename T::iterator it = std::lower_bound(cont.begin(), cont.end(), value);
+	cont.insert(it, value);
+}
+
+template <typename T>
 void printContainer(const std::string& phrase, const T& cont)
 {
 	std::cout << phrase;
@@ -53,16 +60,8 @@ void printContainer(const std::string& phrase, const T& cont)
 	std::cout << std::endl;
 }
 
-
-
-/*
-1st - we have 2 files: date+rate (double), date+value. we need to print date+value*rate
-	-map (date, rate)
-
-2nd - we need to store all figures and signs from argv (with duplicates)
-	-stack
-
-3rd - we need to store a lot of ints to sort (with duplicates)
-	-vector + deque/list
-*/
-
+template <typename T>
+void sortFordJohnson(T& cont)
+{
+	
+}

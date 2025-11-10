@@ -43,8 +43,8 @@ void PmergeMe::run()
 	_runTimeDeque = std::chrono::duration_cast<std::chrono::microseconds>(endTime - startTime);
 	printContainer("After:\t", _deqNums); //delete
 
-	std::cout << "Time to process a range of " << _vecNums.size() << " elements with std::vector : " << _runTimeVector << " us" << std::endl;
-	std::cout << "Time to process a range of " << _deqNums.size() << " elements with std::deque : " << _runTimeDeque << " us" << std::endl;
+	std::cout << "Time to process a range of " << _vecNums.size() << " elements with std::vector : " << _runTimeVector.count() << " us" << std::endl;
+	std::cout << "Time to process a range of " << _deqNums.size() << " elements with std::deque : " << _runTimeDeque.count() << " us" << std::endl;
 }
 
 bool PmergeMe::ifOnlyPositiveInts(const std::string& str)
@@ -59,7 +59,32 @@ bool PmergeMe::ifOnlyPositiveInts(const std::string& str)
 	return true;
 }
 
-bool comp(int a, int b) //delete
+/*at first we insert elements with Jacobsthal indexes, 
+then we insert the rest in the right places with binary search and this makes
+the algorithm efficient (O(n log n) instead of O(n^2)/2 in insertion sort)*/
+std::vector<size_t> jacobsthalIndexesInNElements(size_t n)
+{
+	std::vector<size_t> jac;
+	if (n == 0)
+		return jac;
+
+	jac.push_back(0);
+	if (n == 1)
+		return jac;
+
+	jac.push_back(1);
+	while (jac.back() < n)
+	{
+		jac.push_back((jac[jac.size() - 1] + 2 * jac[jac.size() - 2]));
+	}
+
+	if (jac.back() >= n) //check on example 
+		jac.pop_back();
+
+	return jac;
+}
+
+/*bool comp(int a, int b) //delete
 {
     return a < b;
 }
@@ -72,6 +97,6 @@ void PmergeMe::sortVector(std::vector<int>& v)
 void PmergeMe::sortDeque(std::deque<int>& d)
 {
 	sort(d.begin(), d.end(), comp);
-}
+}*/
 
 
