@@ -62,7 +62,7 @@ bool PmergeMe::ifOnlyPositiveInts(const std::string& str)
 /*at first we insert elements with Jacobsthal indexes, 
 then we insert the rest in the right places with binary search and this makes
 the algorithm efficient (O(n log n) instead of O(n^2)/2 in insertion sort)*/
-std::vector<size_t> jacobsthalIndexesInNElements(size_t n)
+std::vector<size_t> PmergeMe::jacobsthalIndexesInNElements(size_t n)
 {
 	std::vector<size_t> jac;
 	if (n == 0)
@@ -78,7 +78,7 @@ std::vector<size_t> jacobsthalIndexesInNElements(size_t n)
 		jac.push_back((jac[jac.size() - 1] + 2 * jac[jac.size() - 2]));
 	}
 
-	if (jac.back() >= n) //check on example 
+	if (jac.back() >= n)
 		jac.pop_back();
 
 	return jac;

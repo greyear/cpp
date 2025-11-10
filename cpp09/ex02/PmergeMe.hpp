@@ -25,9 +25,11 @@ class PmergeMe
 		std::chrono::microseconds _runTimeVector;
 		std::chrono::microseconds _runTimeDeque;
 
-		bool ifOnlyPositiveInts(const std::string& str);
-		void sortVector(std::vector<int>& v);
-		void sortDeque(std::deque<int>& d);
+		bool				ifOnlyPositiveInts(const std::string& str);
+		std::vector<size_t>	jacobsthalIndexesInNElements(size_t n);
+
+		/*void sortVector(std::vector<int>& v);
+		void sortDeque(std::deque<int>& d);*/
 	public:
 		PmergeMe() = delete;
 		PmergeMe(int argc, char *argv[]);
@@ -63,5 +65,11 @@ void printContainer(const std::string& phrase, const T& cont)
 template <typename T>
 void sortFordJohnson(T& cont)
 {
-	
+	if (cont.size() == 0 || cont.size() == 1)
+		return;
+
+	T mainChain;
+	T toInsert;
+	size_t i;
+	for ()
 }
