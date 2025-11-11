@@ -81,6 +81,9 @@ std::vector<size_t> PmergeMe::jacobsthalIndexesInNElements(size_t n)
 	if (jac.back() >= n)
 		jac.pop_back();
 
+	std::cout << "Jacobsthal indexes for n=" << n << "are: "; //delete!
+	printContainer(" ", jac);
+
 	return jac;
 }
 

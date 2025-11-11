@@ -65,11 +65,39 @@ void printContainer(const std::string& phrase, const T& cont)
 template <typename T>
 void sortFordJohnson(T& cont)
 {
+	//part 1: pairing, putting into 2 containers
 	if (cont.size() == 0 || cont.size() == 1)
 		return;
 
 	T mainChain;
 	T toInsert;
 	size_t i;
-	for ()
+	for (i = 0; i < cont.size() - 1; i += 2)
+	{
+		if (cont[i] >= cont[i + 1])
+		{
+			mainChain.push_back(cont[i]);
+			toInsert.push_back(cont[i + 1]);
+		}
+		else
+		{
+			mainChain.push_back(cont[i + 1]);
+			toInsert.push_back(cont[i]);
+		}
+	}
+	if (i < cont.size()) //odd size, last element has no pair
+		toInsert.push_back(cont[i]);
+
+	//part 2: recursion for mainChain
+	sortFordJohnson(mainChain);
+
+	//part 3: which ones to insert first (Jacobsthal indexes)
+	std::vector<size_t> jacobIndexes = jacobsthalIndexesInNElements(toInsert.size());
+	std::vector<bool> alredyInserted(toInsert.size(), false);
+	for (size_t j = 0; j < jacobIndexes.size(); ++j)
+	{
+		
+	}
+
+	//part 4: binary search for inserting others
 }
