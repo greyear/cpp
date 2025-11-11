@@ -30,18 +30,18 @@ PmergeMe::PmergeMe(int argc, char *argv[])
 
 void PmergeMe::run()
 {
-	printContainer("Before:\t", _vecNums);
+	printContainer("Before vec:\t", _vecNums); //delete name of container
 	auto startTime = std::chrono::high_resolution_clock::now();
-	sortVector(_vecNums);
+	sortFordJohnson(_vecNums);
 	auto endTime = std::chrono::high_resolution_clock::now();
 	_runTimeVector = std::chrono::duration_cast<std::chrono::microseconds>(endTime - startTime);
-	printContainer("After:\t", _vecNums);
+	printContainer("After vec:\t", _vecNums);
 
 	startTime = std::chrono::high_resolution_clock::now();
-	sortDeque(_deqNums);
+	sortFordJohnson(_deqNums);
 	endTime = std::chrono::high_resolution_clock::now();
 	_runTimeDeque = std::chrono::duration_cast<std::chrono::microseconds>(endTime - startTime);
-	printContainer("After:\t", _deqNums); //delete
+	//printContainer("After deq:\t", _deqNums); //delete
 
 	std::cout << "Time to process a range of " << _vecNums.size() << " elements with std::vector : " << _runTimeVector.count() << " us" << std::endl;
 	std::cout << "Time to process a range of " << _deqNums.size() << " elements with std::deque : " << _runTimeDeque.count() << " us" << std::endl;
@@ -62,7 +62,7 @@ bool PmergeMe::ifOnlyPositiveInts(const std::string& str)
 /*at first we insert elements with Jacobsthal indexes, 
 then we insert the rest in the right places with binary search and this makes
 the algorithm efficient (O(n log n) instead of O(n^2)/2 in insertion sort)*/
-std::vector<size_t> PmergeMe::jacobsthalIndexesInNElements(size_t n)
+std::vector<size_t> jacobsthalIndexesInNElements(size_t n)
 {
 	std::vector<size_t> jac;
 	if (n == 0)
@@ -81,8 +81,8 @@ std::vector<size_t> PmergeMe::jacobsthalIndexesInNElements(size_t n)
 	if (jac.back() >= n)
 		jac.pop_back();
 
-	std::cout << "Jacobsthal indexes for n=" << n << "are: "; //delete!
-	printContainer(" ", jac);
+	//std::cout << "Jacobsthal indexes for n=" << n << "are: "; //delete!
+	//printContainer(" ", jac);
 
 	return jac;
 }

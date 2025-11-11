@@ -16,6 +16,7 @@
 #include <vector>
 #include <deque>
 #include <chrono>
+#include <algorithm>
 
 class PmergeMe
 {
@@ -25,8 +26,7 @@ class PmergeMe
 		std::chrono::microseconds _runTimeVector;
 		std::chrono::microseconds _runTimeDeque;
 
-		bool				ifOnlyPositiveInts(const std::string& str);
-		std::vector<size_t>	jacobsthalIndexesInNElements(size_t n);
+		bool ifOnlyPositiveInts(const std::string& str);
 
 		/*void sortVector(std::vector<int>& v);
 		void sortDeque(std::deque<int>& d);*/
@@ -62,6 +62,8 @@ void printContainer(const std::string& phrase, const T& cont)
 	std::cout << std::endl;
 }
 
+std::vector<size_t>	jacobsthalIndexesInNElements(size_t n);
+
 template <typename T>
 void sortFordJohnson(T& cont)
 {
@@ -90,14 +92,32 @@ void sortFordJohnson(T& cont)
 
 	//part 2: recursion for mainChain
 	sortFordJohnson(mainChain);
+	T copy = mainChain;
+
+	//std::cout << "size of mainChain is " << mainChain.size() << ", and of toInsert is " << toInsert.size() << std::endl;
 
 	//part 3: which ones to insert first (Jacobsthal indexes)
 	std::vector<size_t> jacobIndexes = jacobsthalIndexesInNElements(toInsert.size());
-	std::vector<bool> alredyInserted(toInsert.size(), false);
+	std::vector<bool> alreadyInserted(toInsert.size(), false);
 	for (size_t j = 0; j < jacobIndexes.size(); ++j)
 	{
-		
+		size_t jInd = jacobIndexes[j];
+		if (!alreadyInserted[jInd])
+		{
+			insertBinary(copy, toInsert[jInd]);
+			alreadyInserted[jInd] = true;
+		}
 	}
 
 	//part 4: binary search for inserting others
+	for (size_t k = 0; k < toInsert.size(); ++k)
+	{
+		if (!alreadyInserted[k])
+		{
+			insertBinary(copy, toInsert[k]);
+			alreadyInserted[k] = true;
+		}
+	}
+
+	cont = copy;
 }
