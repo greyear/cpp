@@ -25,18 +25,13 @@ class PmergeMe
 		std::deque<int>	_deqNums;
 		std::chrono::microseconds _runTimeVector;
 		std::chrono::microseconds _runTimeDeque;
-
 		bool ifOnlyPositiveInts(const std::string& str);
-
-		/*void sortVector(std::vector<int>& v);
-		void sortDeque(std::deque<int>& d);*/
 	public:
 		PmergeMe() = delete;
 		PmergeMe(int argc, char *argv[]);
 		PmergeMe(const PmergeMe& other) = delete;
 		PmergeMe& operator=(const PmergeMe& other) = delete;
 		~PmergeMe() = default;
-
 		void run();
 };
 
@@ -87,14 +82,12 @@ void sortFordJohnson(T& cont)
 			toInsert.push_back(cont[i]);
 		}
 	}
-	if (i < cont.size()) //odd size, last element has no pair
+	if (i < cont.size())
 		toInsert.push_back(cont[i]);
 
 	//part 2: recursion for mainChain
 	sortFordJohnson(mainChain);
 	T copy = mainChain;
-
-	//std::cout << "size of mainChain is " << mainChain.size() << ", and of toInsert is " << toInsert.size() << std::endl;
 
 	//part 3: which ones to insert first (Jacobsthal indexes)
 	std::vector<size_t> jacobIndexes = jacobsthalIndexesInNElements(toInsert.size());

@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
-#include <bits/stdc++.h> //delete
 
 PmergeMe::PmergeMe(int argc, char *argv[])
 {
@@ -30,18 +29,17 @@ PmergeMe::PmergeMe(int argc, char *argv[])
 
 void PmergeMe::run()
 {
-	printContainer("Before vec:\t", _vecNums); //delete name of container
+	printContainer("Before:\t", _vecNums);
 	auto startTime = std::chrono::high_resolution_clock::now();
 	sortFordJohnson(_vecNums);
 	auto endTime = std::chrono::high_resolution_clock::now();
 	_runTimeVector = std::chrono::duration_cast<std::chrono::microseconds>(endTime - startTime);
-	printContainer("After vec:\t", _vecNums);
+	printContainer("After:\t", _vecNums);
 
 	startTime = std::chrono::high_resolution_clock::now();
 	sortFordJohnson(_deqNums);
 	endTime = std::chrono::high_resolution_clock::now();
 	_runTimeDeque = std::chrono::duration_cast<std::chrono::microseconds>(endTime - startTime);
-	//printContainer("After deq:\t", _deqNums); //delete
 
 	std::cout << "Time to process a range of " << _vecNums.size() << " elements with std::vector : " << _runTimeVector.count() << " us" << std::endl;
 	std::cout << "Time to process a range of " << _deqNums.size() << " elements with std::deque : " << _runTimeDeque.count() << " us" << std::endl;
@@ -81,25 +79,5 @@ std::vector<size_t> jacobsthalIndexesInNElements(size_t n)
 	if (jac.back() >= n)
 		jac.pop_back();
 
-	//std::cout << "Jacobsthal indexes for n=" << n << "are: "; //delete!
-	//printContainer(" ", jac);
-
 	return jac;
 }
-
-/*bool comp(int a, int b) //delete
-{
-    return a < b;
-}
-
-void PmergeMe::sortVector(std::vector<int>& v)
-{
-	sort(v.begin(), v.end(), comp);
-}
-
-void PmergeMe::sortDeque(std::deque<int>& d)
-{
-	sort(d.begin(), d.end(), comp);
-}*/
-
-

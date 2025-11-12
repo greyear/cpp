@@ -1,7 +1,7 @@
 #!/bin/bash
 
 check_sorted() {
-    after_line=$(grep "^After" <<< "$1" | head -n 1 | sed 's/After vec:\t//')
+    after_line=$(grep "^After" <<< "$1" | head -n 1 | sed 's/After:\t//')
     echo "$after_line" | awk '
     {
         prev = $1
