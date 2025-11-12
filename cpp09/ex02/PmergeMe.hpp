@@ -62,7 +62,6 @@ std::vector<size_t>	jacobsthalIndexesInNElements(size_t n);
 template <typename T>
 void sortFordJohnson(T& cont)
 {
-	//part 1: pairing, putting into 2 containers
 	if (cont.size() == 0 || cont.size() == 1)
 		return;
 
@@ -85,11 +84,9 @@ void sortFordJohnson(T& cont)
 	if (i < cont.size())
 		toInsert.push_back(cont[i]);
 
-	//part 2: recursion for mainChain
 	sortFordJohnson(mainChain);
 	T copy = mainChain;
 
-	//part 3: which ones to insert first (Jacobsthal indexes)
 	std::vector<size_t> jacobIndexes = jacobsthalIndexesInNElements(toInsert.size());
 	std::vector<bool> alreadyInserted(toInsert.size(), false);
 	for (size_t j = 0; j < jacobIndexes.size(); ++j)
@@ -102,7 +99,6 @@ void sortFordJohnson(T& cont)
 		}
 	}
 
-	//part 4: binary search for inserting others
 	for (size_t k = 0; k < toInsert.size(); ++k)
 	{
 		if (!alreadyInserted[k])

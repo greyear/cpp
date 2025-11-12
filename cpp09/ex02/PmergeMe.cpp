@@ -57,9 +57,6 @@ bool PmergeMe::ifOnlyPositiveInts(const std::string& str)
 	return true;
 }
 
-/*at first we insert elements with Jacobsthal indexes, 
-then we insert the rest in the right places with binary search and this makes
-the algorithm efficient (O(n log n) instead of O(n^2)/2 in insertion sort)*/
 std::vector<size_t> jacobsthalIndexesInNElements(size_t n)
 {
 	std::vector<size_t> jac;
