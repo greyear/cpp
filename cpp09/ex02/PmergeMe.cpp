@@ -21,7 +21,19 @@ PmergeMe::PmergeMe(int argc, char *argv[])
 
 		if (!ifOnlyPositiveInts(argStr))
 			throw std::runtime_error("Error: invalid argument: " + argStr);
-		argInt = std::stoi(argStr);
+		try
+		{
+			argInt = std::stoi(argStr);
+		}
+		catch (const std::out_of_range& e)
+		{
+			throw std::runtime_error("Error: number is too large: " + argStr);
+		}
+		catch (const std::invalid_argument& e)
+		{
+			throw std::runtime_error("Error: invalid number: " + argStr);
+		}
+
 		_vecNums.push_back(argInt);
 		_deqNums.push_back(argInt);
 	}
