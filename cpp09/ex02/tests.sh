@@ -35,19 +35,25 @@ echo "$output"
 check_sorted "$output"
 echo ""
 
-echo "Test 12: already sorted input"
+echo "Test 12: duplicates"
+output=$(./PmergeMe 10 5 5 5 5 5 5 5)
+echo "$output"
+check_sorted "$output"
+echo ""
+
+echo "Test 13: already sorted input"
 output=$(seq 1 100 | ./PmergeMe $(tr "\n" " "))
 echo "$output"
 check_sorted "$output"
 echo ""
 
-echo "Test 13: reverse sorted input"
+echo "Test 14: reverse sorted input"
 output=$(seq 100 -1 1 | ./PmergeMe $(tr "\n" " "))
 echo "$output"
 check_sorted "$output"
 echo ""
 
-#echo "Test 14: large random input"
+#echo "Test 15: large random input"
 #output=$(./PmergeMe $(shuf -i 1-100000 -n 10000 | tr "\n" " "))
 #echo "$output"
 #check_sorted "$output"
