@@ -31,7 +31,7 @@ class BitcoinExchange
 		std::string getToday();
 		void fillDateRateMap();
 		double getPrice(const std::string& date) const;
-		void handleValuesInput(char *filePath); //static??
+		void handleValuesInput(char *filePath);
 	public:
 		BitcoinExchange() = default;
 		BitcoinExchange(const BitcoinExchange& other) = delete;

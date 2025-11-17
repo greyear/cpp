@@ -33,8 +33,3 @@ class RPN
 
 		void countRPN(const std::string& arg);
 };
-
-/*
-
-
-*/
