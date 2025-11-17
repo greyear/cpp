@@ -43,22 +43,13 @@ void PmergeMe::run()
 {
 	printContainer("Before:\t", _vecNums);
 	auto startTime = std::chrono::high_resolution_clock::now();
-	//sortFordJohnson(_vecNums);
-	g_comparisonCount = 0;
 	sortFordJohnson(_vecNums);
-	std::cout << "Comparisons for vector: " << g_comparisonCount << std::endl;
-
 	auto endTime = std::chrono::high_resolution_clock::now();
 	_runTimeVector = std::chrono::duration_cast<std::chrono::microseconds>(endTime - startTime);
 	printContainer("After:\t", _vecNums);
 
 	startTime = std::chrono::high_resolution_clock::now();
-	//sortFordJohnson(_deqNums);
-	g_comparisonCount = 0;
 	sortFordJohnson(_deqNums);
-	std::cout << "Comparisons for deque: " << g_comparisonCount << std::endl;
-
-
 	endTime = std::chrono::high_resolution_clock::now();
 	_runTimeDeque = std::chrono::duration_cast<std::chrono::microseconds>(endTime - startTime);
 

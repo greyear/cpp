@@ -19,39 +19,6 @@
 #include <algorithm>
 #include <utility>
 
-static size_t g_comparisonCount = 0;
-
-template<typename T>
-bool cmp_less(const T& a, const T& b) {
-    ++g_comparisonCount;
-    return a < b;
-}
-
-template<typename T>
-bool cmp_greater_or_equal(const T& a, const T& b) {
-    ++g_comparisonCount;
-    return a >= b;
-}
-
-template<typename It, typename T>
-It upper_bound_counting(It begin, It end, const T& value) {
-    It left = begin;
-    It right = end;
-
-    while (left < right) {
-        It mid = left + (std::distance(left, right) / 2);
-        if (!cmp_less(value, *mid))  // value >= *mid → go right
-            left = mid + 1;
-        else
-            right = mid;
-    }
-    return left;
-}
-
-//delete!
-
-
-
 class PmergeMe
 {
 	private:
@@ -112,7 +79,7 @@ void sortFordJohnson(T& cont)
 	size_t i;
 	for (i = 0; i + 1 < cont.size(); i += 2)
 	{
-		if (cmp_greater_or_equal(cont[i], cont[i + 1])) //if (cont[i] >= cont[i + 1]) delete!
+		if (cont[i] >= cont[i + 1])
 			pairs.push_back(std::make_pair(cont[i], cont[i + 1]));
 		else
 			pairs.push_back(std::make_pair(cont[i + 1], cont[i]));
@@ -158,8 +125,7 @@ void sortFordJohnson(T& cont)
 		if (jInd >= toInsert.size() || alreadyInserted[jInd])
 			continue;
 		size_t limit = aPositions[jInd];
-		auto it = upper_bound_counting(copy.begin(), copy.begin() + limit, toInsert[jInd]);
-		//auto it = std::upper_bound(copy.begin(), copy.begin() + limit, toInsert[jInd]); change
+		auto it = std::upper_bound(copy.begin(), copy.begin() + limit, toInsert[jInd]);
 		size_t insertedPos = static_cast<size_t>(std::distance(copy.begin(), it));
 		copy.insert(it, toInsert[jInd]);
 		alreadyInserted[jInd] = true;
@@ -176,8 +142,7 @@ void sortFordJohnson(T& cont)
 		if (!alreadyInserted[k])
 		{
 			size_t limit = aPositions[k];
-			auto it = upper_bound_counting(copy.begin(), copy.begin() + limit, toInsert[k]);
-			//auto it = std::upper_bound(copy.begin(), copy.begin() + limit, toInsert[k]);
+			auto it = std::upper_bound(copy.begin(), copy.begin() + limit, toInsert[k]);
 			size_t insertedPos = static_cast<size_t>(std::distance(copy.begin(), it));
 			copy.insert(it, toInsert[k]);
 			alreadyInserted[k] = true;
@@ -192,8 +157,7 @@ void sortFordJohnson(T& cont)
 	//if there was a lonely element (odd number of elements)
 	if (hasLonely)
 	{
-		auto it = upper_bound_counting(copy.begin(), copy.end(), lonely);
-		//auto it = std::upper_bound(copy.begin(), copy.end(), lonely);
+		auto it = std::upper_bound(copy.begin(), copy.end(), lonely);
 		copy.insert(it, lonely);
 	}
 
