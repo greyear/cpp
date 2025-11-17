@@ -75,20 +75,39 @@ void BitcoinExchange::fillDateRateMap()
 			int month = std::stoi(match[2].str());
 			int day = std::stoi(match[3].str());
 			if (!isExistingDate(year, month, day))
-				throw std::runtime_error("Error: invalid date in data.csv: " + line);
+			{
+				std::cout << "Error: invalid date in data.csv: " << line << std::endl;
+				continue;
+			}
 			std::string yMD = match[1].str() + "-" + match[2].str() + "-" + match[3].str();
-			double rate = std::stod(match[4].str());
+			double rate;
+			try
+			{
+				rate = std::stod(match[4].str());
+			}
+			catch(const std::exception& e)
+			{
+				std::cout << "Error: invalid exchange rate in data.csv: " << line << std::endl;
+				continue;
+			}
+
 			if (_datePrices.find(yMD) != _datePrices.end())
-				throw std::runtime_error("Error: duplicate dates in data.csv");
+			{
+				std::cout << "Error: duplicate dates in data.csv: " << line << std::endl;
+				continue;
+			}
 			_datePrices[yMD] = rate;
 		}
 		else
-			throw std::runtime_error("Error: invalid line in data.csv file: " + line);
+		{
+			std::cout << "Error: invalid line in data.csv file: " << line << std::endl;
+			continue;
+		}
 	}
 	if (_datePrices.empty())
 		throw std::runtime_error("Error: data.csv is empty or contains no valid entries");
 	if (_datePrices.rbegin()->first > getToday())
-		throw std::runtime_error("Error: there's a future date in data.csv file");
+		std::cout << "Error: there's a future date in data.csv file" << std::endl;
 }
 
 double BitcoinExchange::getPrice(const std::string& date) const
@@ -137,7 +156,16 @@ void BitcoinExchange::handleValuesInput(char *filePath)
 				continue;
 			}
 
-			double amount = std::stod(match[4].str());
+			double amount;
+			try
+			{
+				amount = std::stod(match[4].str());
+			}
+			catch(const std::exception& e)
+			{
+				std::cout << "Error: invalid amount. " << std::endl;
+				continue;
+			}
 			if (amount < 0)
 			{
 				std::cout << "Error: not a positive number." << std::endl;
@@ -148,9 +176,17 @@ void BitcoinExchange::handleValuesInput(char *filePath)
 				std::cout << "Error: too large a number." << std::endl;
 				continue;
 			}
-			double price = getPrice(yMD);
-			double mult = amount * price;
-			std::cout << yMD << " => " << amount << " = " << mult << std::endl;			
+
+			try
+			{
+				double price = getPrice(yMD);
+				double mult = amount * price;
+				std::cout << yMD << " => " << amount << " = " << mult << std::endl;	
+			}
+			catch(const std::exception& e)
+			{
+				std::cout << e.what() << std::endl;
+			}
 		}
 		else
 		{
